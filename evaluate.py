@@ -62,6 +62,11 @@ def main(cfg: DictConfig) -> None:
         environment=environment_info(),
         predictions=module.test_predictions if cfg.get("save_predictions", False) else None,
     )
+    (output / 'evaluation_protocol.json').write_text(json.dumps({
+        'source_split': getattr(datamodule, 'evaluation_split', 'test'),
+        'checkpoint': str(cfg.checkpoint_path),
+        'scope': str(cfg.get('evaluation_scope', 'held_out')),
+    }, indent=2), encoding='utf-8')
     (output / "manifest.json").write_text(
         json.dumps(
             {"path": str(datamodule.manifest_path.resolve()), "sha256": manifest_digest(datamodule.manifest_path)},

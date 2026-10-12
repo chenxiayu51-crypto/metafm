@@ -60,7 +60,7 @@ def main(cfg: DictConfig) -> None:
     data_config = OmegaConf.to_container(cfg.data, resolve=True)
     assert isinstance(data_config, dict)
     write_run_metadata(output, manifest_path=datamodule.manifest_path, data_config=data_config, trainer_config=trainer_config, command="pretrain")
-    Trainer(**build_trainer_options(trainer_config)).fit(module, datamodule=datamodule, ckpt_path=cfg.get("resume_from"))
+    Trainer(**build_trainer_options(trainer_config)).fit(module, datamodule=datamodule, ckpt_path=cfg.get("resume_from"), weights_only=False)
 
 
 if __name__ == "__main__":

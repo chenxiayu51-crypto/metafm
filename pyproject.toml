@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "metafmodel"
+version = "0.2.0"
+description = "Meta sEMG Ring Criss-Cross and EMA research engineering"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "h5py>=3.9", "pandas>=1.5", "tables>=3.8", "torch>=2.2", "lightning>=2.2", "hydra-core>=1.3,<1.4", "omegaconf>=2.3,<2.4"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["semg_fm*", "semg_h5*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

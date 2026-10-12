@@ -14,6 +14,7 @@ from semg_fm.metrics.events import event_f1, event_f1_from_counts
 from semg_fm.metrics.regression import masked_regression_metrics
 from semg_fm.metrics.text import levenshtein_distance
 from semg_fm.models.heads import CTCTextHead, GestureEventHead, TemporalRegressionHead
+from semg_fm.models import RingCrissCrossEncoder
 from semg_fm.robustness import apply_robustness
 from semg_fm.tasks import task_kind, task_spec
 
@@ -192,11 +193,23 @@ class DownstreamModule(LightningModule):
         """Optimize the selected backbone and its downstream head together."""
         return torch.optim.AdamW(self.parameters(), lr=self.learning_rate, weight_decay=self.weight_decay)
 
-    def load_backbone_checkpoint(self, checkpoint_path: str) -> None:
+    def load_backbone_checkpoint(self, checkpoint_path: str) -> dict:
         """Load a pretraining ``student.*`` state dict into this module's backbone."""
         # weights_only=False mirrors Lightning's own checkpoint format; only
         # load checkpoints produced by this repository's training entry points.
         checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+        saved_config = checkpoint.get('hyper_parameters', {}).get('model_config')
+        config_checked = False
+        if saved_config is not None and isinstance(self.backbone, RingCrissCrossEncoder):
+            current = dict(d_model=self.backbone.d_model, depth=len(self.backbone.blocks),
+                           heads=self.backbone.blocks[0].temporal_attention.num_heads,
+                           patch_samples=self.backbone.patch_samples, channels=self.backbone.channels,
+                           dropout=0.0)
+            for key, value in current.items():
+                saved_value = saved_config.get(key, {'channels': 16, 'dropout': 0.0}.get(key))
+                if saved_value != value:
+                    raise ValueError(f'backbone configuration mismatch for {key}: {saved_value} != {value}')
+            config_checked = True
         state = checkpoint.get("state_dict", checkpoint)
         if not isinstance(state, Mapping):
             raise ValueError("checkpoint must contain a state_dict mapping")
@@ -209,7 +222,11 @@ class DownstreamModule(LightningModule):
             student_state = {name.removeprefix("model.encoder."): value for name, value in state.items() if name.startswith("model.encoder.")}
         if not student_state:
             raise ValueError("checkpoint has neither student.*, backbone.*, nor model.encoder.* weights")
-        self.backbone.load_state_dict(student_state, strict=True)
+        loaded=self.backbone.load_state_dict(student_state, strict=True)
+        self.backbone_load_report=dict(checkpoint=checkpoint_path,missing_keys=list(loaded.missing_keys),
+                                       unexpected_keys=list(loaded.unexpected_keys),loaded_tensors=len(student_state),strict=True,
+                                       configuration_checked=config_checked)
+        return self.backbone_load_report
 
     def _loss_and_metrics(
         self, batch: Mapping[str, Any], transform: Mapping[str, Any] | None = None

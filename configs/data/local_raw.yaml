@@ -1,0 +1,8 @@
+defaults:
+  - local
+name: local_raw
+format: raw
+# Build a raw manifest with official source identity before using this profile.
+# local_verify writes raw_wrist_angle_manifest.csv for the five real recordings.
+root: ${oc.env:META_RAW_ROOT}
+manifest_path: ${oc.env:META_RAW_MANIFEST_PATH}

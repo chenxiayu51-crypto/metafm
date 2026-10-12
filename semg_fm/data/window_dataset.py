@@ -73,11 +73,12 @@ class _WindowIndex:
     ordinal and multiplying by the record's stride.
     """
 
-    def __init__(self, paths, window_samples, stride_samples, offsets):
+    def __init__(self, paths, window_samples, stride_samples, offsets, starts=None):
         self.paths = paths
         self.offsets = offsets
         self._window_samples = window_samples
         self._stride_samples = stride_samples
+        self.starts = np.zeros(len(paths),dtype=np.int64) if starts is None else starts
 
     def __len__(self) -> int:
         return int(self.offsets[-1])
@@ -92,7 +93,7 @@ class _WindowIndex:
             raise IndexError(index)
         record = int(np.searchsorted(self.offsets, ordinal, side="right") - 1)
         local = ordinal - int(self.offsets[record])
-        start = local * int(self._stride_samples[record])
+        start = int(self.starts[record]) + local * int(self._stride_samples[record])
         return (self.paths[record], start, start + int(self._window_samples[record]))
 
     def __iter__(self):
@@ -100,7 +101,7 @@ class _WindowIndex:
             window_samples = int(self._window_samples[record])
             stride_samples = int(self._stride_samples[record])
             count = int(self.offsets[record + 1]) - int(self.offsets[record])
-            for start in range(0, count * stride_samples, stride_samples):
+            for start in range(int(self.starts[record]), int(self.starts[record]) + count * stride_samples, stride_samples):
                 yield (path, start, start + window_samples)
 
 
@@ -113,6 +114,9 @@ class CanonicalWindowDataset(Dataset):
         self.window_ms = float(window_ms)
         self.stride_ms = float(stride_ms)
         self._records = {Path(record["path"]): record for record in records}
+        self._record_rows = list(records)
+        if len(self._records) != len(records):
+            self._records = {(Path(r['path']),r.get('sample_start',0),r.get('sample_end',r['sample_count'])):r for r in records}
         self._index = self._build_index(records)
         if records and not len(self._index):
             raise ValueError(
@@ -125,13 +129,19 @@ class CanonicalWindowDataset(Dataset):
         window_samples: list[int] = []
         stride_samples: list[int] = []
         counts: list[int] = []
+        starts = []
         for record in records:
             rate_hz = float(record["sample_rate_hz"])
             window = int(round(rate_hz * self.window_ms / 1000.0))
             stride = int(round(rate_hz * self.stride_ms / 1000.0))
             if window <= 0 or stride <= 0:
                 raise ValueError("window_ms and stride_ms must produce at least one sample")
-            sample_count = int(record["sample_count"])
+            start = int(record.get('sample_start',0))
+            end = int(record.get('sample_end',record['sample_count']))
+            if not 0 <= start < end <= int(record['sample_count']):
+                raise ValueError('invalid sample interval')
+            sample_count = end-start
+            starts.append(start)
             paths.append(Path(record["path"]))
             window_samples.append(window)
             stride_samples.append(stride)
@@ -144,6 +154,7 @@ class CanonicalWindowDataset(Dataset):
             np.asarray(window_samples, dtype=np.int64),
             np.asarray(stride_samples, dtype=np.int64),
             offsets.astype(np.int64),
+            np.asarray(starts,dtype=np.int64),
         )
 
     def window_indices_by_task(self) -> dict[str, np.ndarray]:
@@ -157,7 +168,7 @@ class CanonicalWindowDataset(Dataset):
         offsets = self._index.offsets
         groups: dict[str, list[np.ndarray]] = {}
         for position, path in enumerate(paths):
-            task_id = str(self._records[path]["task_id"])
+            task_id = str(self._record_rows[position]["task_id"])
             start, stop = int(offsets[position]), int(offsets[position + 1])
             if stop > start:
                 groups.setdefault(task_id, []).append(np.arange(start, stop, dtype=np.int64))
@@ -167,12 +178,14 @@ class CanonicalWindowDataset(Dataset):
         }
 
     @classmethod
-    def from_manifest(cls, manifest_path, split: str, window_ms: float, stride_ms: float, root=None, task_id: str | None = None):
+    def from_manifest(cls, manifest_path, split: str, window_ms: float, stride_ms: float, root=None, task_id: str | None = None, corpus_path=None):
         if split not in OFFICIAL_SPLITS:
             raise ValueError(f"split must be one of {sorted(OFFICIAL_SPLITS)}")
         manifest_path = Path(manifest_path)
         root = Path(root) if root is not None else manifest_path.parent
         frame = load_manifest(manifest_path, root)
+        from .intervals import validate_group_assignments, selected_records
+        validate_group_assignments(frame)
         if task_id is not None and task_id not in set(frame["task_id"].astype(str)):
             raise ValueError(f"no manifest records have task_id {task_id!r}")
         records = []
@@ -188,10 +201,9 @@ class CanonicalWindowDataset(Dataset):
                 row_split = _text(row["split"]).strip()
             else:
                 row_split = ""
-            if row_split not in OFFICIAL_SPLITS:
+            from .intervals import NATURE_DATASETS
+            if row_split not in OFFICIAL_SPLITS and row['dataset_id'] not in NATURE_DATASETS:
                 skipped_unassigned += 1
-                continue
-            if row_split != split:
                 continue
             if task_id is not None and _text(row["task_id"]) != task_id:
                 continue
@@ -205,14 +217,17 @@ class CanonicalWindowDataset(Dataset):
             rate_hz = float(row["sample_rate_hz"])
             if not np.isfinite(rate_hz) or rate_hz <= 0:
                 raise ValueError(f"invalid sample rate for {row['path']}")
-            records.append({
+            record = {
                 "path": Path(row["resolved_path"]), "dataset_id": _text(row["dataset_id"]),
                 "task_id": _text(row["task_id"]), "record_id": _text(row.get("record_id", Path(row["path"]).stem)),
                 "subject_id": _text(row["subject_id"]), "session_id": _text(row["session_id"]),
                 "side": _text(row["side"]), "pair_id": _text(row["pair_id"]),
                 "official_split": official,
                 "sample_count": sample_count, "sample_rate_hz": rate_hz,
-            })
+                "source_file": _text(row['source_file']), "source_sha256": _text(row['source_sha256']),
+                "effective_split": row_split,
+            }
+            records.append(record)
         # A converter-written manifest has official_split 'unknown' and no 'split'
         # column, so no split can ever be selected from it.  Without this check
         # that misconfiguration silently yields an empty dataset and a training
@@ -238,6 +253,7 @@ class CanonicalWindowDataset(Dataset):
                 "them; without it they are excluded from training.",
                 stacklevel=2,
             )
+        records = selected_records(records,split,corpus_path)
         return cls(records, window_ms, stride_ms)
 
     def apply_label_budget(self, budget: float, seed: int) -> None:
@@ -273,6 +289,9 @@ class CanonicalWindowDataset(Dataset):
                 "train for zero steps without reporting an error."
             )
         self._records = {Path(record["path"]): record for record in kept}
+        self._record_rows = kept
+        if len(self._records)!=len(kept):
+            self._records={(Path(r['path']),r.get('sample_start',0),r.get('sample_end',r['sample_count'])):r for r in kept}
         self._index = self._build_index(kept)
 
     def __len__(self) -> int:
@@ -280,9 +299,14 @@ class CanonicalWindowDataset(Dataset):
 
     def __getitem__(self, index: int) -> dict[str, Any]:
         path, start_index, end_index = self._index[index]
-        record = self._records[path]
+        position = int(np.searchsorted(self._index.offsets,int(index)%len(self),side='right')-1)
+        record = self._record_rows[position]
         with h5py.File(path, "r") as h5:
             emg_dataset, time_dataset, sample_rate_hz = _canonical_signal_datasets(h5, record, path)
+            if _text(h5.attrs.get('schema_version',''))!='1.0' or len(emg_dataset)!=record['sample_count']:
+                raise ValueError('canonical schema/sample_count mismatch')
+            if 'source_file' in record and _text(h5.attrs.get('source_file',''))!=record['source_file']:
+                raise ValueError('source_file does not match manifest')
             emg = np.asarray(emg_dataset[start_index:end_index])
             # Windows are contiguous half-open clock intervals. A nonterminal window ends
             # exactly at its successor's first timestamp; the final window extrapolates a
@@ -306,6 +330,8 @@ class CanonicalWindowDataset(Dataset):
                 end_s = float(time_s[-1] + (time_s[-1] - time_s[-2]) / 2)
             else:
                 end_s = float(time_s[-1] + 0.5 / sample_rate_hz)
+            if 'corpus_end_s' in record:
+                end_s=min(end_s,record['corpus_end_s']-record['source_time_origin_s'])
             item = {
                 "emg": torch.as_tensor(emg, dtype=torch.float32),
                 "sample_mask": torch.ones(emg.shape[0], dtype=torch.bool),
@@ -314,6 +340,10 @@ class CanonicalWindowDataset(Dataset):
                 "subject_id": record["subject_id"], "session_id": record["session_id"],
                 "side": record["side"], "pair_id": record["pair_id"], "start_s": start_s,
                 "sample_rate_hz": sample_rate_hz,
+                "sampling_rate": sample_rate_hz, "hand_side": record['side'],
+                "source_file": record.get('source_file',_text(h5.attrs.get('source_file',''))),
+                "split": record.get('split',record['official_split']),
+                "sample_start": start_index, "sample_end": end_index,
             }
             item.update(parse_target(record["task_id"], h5, start_s, end_s, start_index, end_index))
         return item

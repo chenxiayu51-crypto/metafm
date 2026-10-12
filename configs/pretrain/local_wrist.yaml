@@ -1,0 +1,16 @@
+# @package _global_
+seed: 42
+model:
+  d_model: 32
+  depth: 2
+  heads: 4
+  patch_samples: 40
+optimizer:
+  learning_rate: 0.001
+  warmup_steps: 0
+  max_steps: 20
+trainer:
+  val_check_interval: 1000
+hydra:
+  run:
+    dir: outputs/pretrain/smoke_ring_ema_wrist_${now:%Y%m%d_%H%M%S}

@@ -1,0 +1,22 @@
+accelerator: gpu
+devices: 1
+precision: 32-true
+max_epochs: -1
+logger: false
+enable_checkpointing: true
+enable_progress_bar: false
+enable_model_summary: false
+num_sanity_val_steps: 0
+limit_val_batches: 0
+default_root_dir: .
+callbacks:
+  diagnostics:
+    _target_: semg_fm.local_callbacks.TrainingDiagnostics
+    output_dir: .
+  checkpoint:
+    _target_: lightning.pytorch.callbacks.ModelCheckpoint
+    dirpath: .
+    filename: checkpoint_step{step}
+    save_last: true
+    save_top_k: 0
+    every_n_train_steps: 10

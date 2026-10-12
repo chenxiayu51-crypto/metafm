@@ -1,0 +1,17 @@
+# @package _global_
+defaults:
+  - override /data: local
+  - override /trainer: local_finetune
+  - override /task: pose
+seed: 42
+model:
+  d_model: 32
+  depth: 2
+  heads: 4
+  patch_samples: 40
+data:
+  task_id: pose
+  corpus_path: null
+finetune_mode: probe
+# Real use requires a manifest containing official Pose train. The current
+# val-only manifest deliberately fails with empty training split.

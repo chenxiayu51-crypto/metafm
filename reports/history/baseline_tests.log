@@ -1,0 +1,641 @@
+..............................EEE.............EEEE..EE.............E.... [ 25%]
+........EE......EEEEEEEEEE...........EEEEEEEEEEEEEEEEEEEEEEEEE.......... [ 51%]
+..EEEEEEEE..EEEEEEEEEEEEEEEEEEEEEE...E.............EE................... [ 77%]
+...E...................EEEEEEEEEE.EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE         [100%]
+=================================== ERRORS ====================================
+___ ERROR at setup of test_checkpoint_contains_teacher_and_scheduler_state ____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_____ ERROR at setup of test_fit_resume_keeps_global_step_and_ema_counter _____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+____ ERROR at setup of test_converter_cli_writes_a_valid_tree_and_manifest ____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+____ ERROR at setup of test_datamodule_yields_task_homogeneous_train_batch ____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_datamodule_uses_attached_trainer_rank_when_building_loader _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_setup_initializes_only_the_requested_split_lifecycle _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_eval_loaders_cover_each_imbalanced_task_index_once_without_epoch_variation _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+______ ERROR at setup of test_datamodule_rejects_an_empty_training_split ______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_evaluation_sampler_reads_task_ids_without_opening_h5_files _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+______ ERROR at setup of test_trainer_test_loop_logs_the_primary_metric _______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+___ ERROR at setup of test_label_budget_keeps_deterministic_subject_groups ____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_______ ERROR at setup of test_label_budget_rejects_out_of_range_values _______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+______ ERROR at setup of test_evaluation_writes_machine_readable_outputs ______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+__ ERROR at setup of test_evaluation_writes_events_predictions_as_json_lists __
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+____ ERROR at setup of test_evaluation_skips_optional_outputs_when_absent _____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+___ ERROR at setup of test_manifest_resolves_records_and_preserves_task_ids ___
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+______ ERROR at setup of test_manifest_rejects_missing_required_columns _______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+____ ERROR at setup of test_manifest_rejects_a_missing_sample_rate_column _____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+________ ERROR at setup of test_manifest_rejects_directory_record_path ________
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+__ ERROR at setup of test_manifest_rejects_paths_outside_root[C:/outside.h5] __
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+__ ERROR at setup of test_manifest_rejects_paths_outside_root[../outside.h5] __
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_____ ERROR at setup of test_canonical_fixture_has_root_schema_attributes _____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_rejects_empty_record_before_time_endpoint_access[convert_gni_discrete_gestures] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_rejects_empty_record_before_time_endpoint_access[convert_gni_handwriting] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_rejects_empty_record_before_time_endpoint_access[convert_gni_wrist] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_rejects_output_root_nested_in_input_root[convert_gni_discrete_gestures] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_rejects_output_root_nested_in_input_root[convert_gni_handwriting] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_rejects_output_root_nested_in_input_root[convert_gni_wrist] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_wrist_converter_rejects_sanitized_target_name_collision _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_wrist_converter_rejects_nonfinite_target_with_field_name _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_gni_discrete_gestures] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_gni_handwriting] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_gni_wrist] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_manifest_replace_failure_cleans_temp[convert_gni_discrete_gestures] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_manifest_replace_failure_cleans_temp[convert_gni_handwriting] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_manifest_replace_failure_cleans_temp[convert_gni_wrist] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_run_conversion_records_relative_source_file_and_time_provenance[convert_gni_discrete_gestures] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_run_conversion_records_relative_source_file_and_time_provenance[convert_gni_handwriting] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_run_conversion_records_relative_source_file_and_time_provenance[convert_gni_wrist] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_labelled_tasks_require_finite_source_rows[convert_gni_discrete_gestures-discrete_gestures] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_labelled_tasks_require_finite_source_rows[convert_gni_handwriting-handwriting] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_recovers_subject_identity_from_the_release_file_name[convert_gni_discrete_gestures] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_recovers_subject_identity_from_the_release_file_name[convert_gni_handwriting] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_recovers_subject_identity_from_the_release_file_name[convert_gni_wrist] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_conversion_discovers_hdf5_sources_and_rejects_an_empty_root[convert_gni_discrete_gestures] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_conversion_discovers_hdf5_sources_and_rejects_an_empty_root[convert_gni_handwriting] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_conversion_discovers_hdf5_sources_and_rejects_an_empty_root[convert_gni_wrist] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_root_make_splits_assigns_unknown_and_preserves_official _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+________ ERROR at setup of test_output_is_independent_of_manifest_root ________
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+__________ ERROR at setup of test_invalid_official_split_is_rejected __________
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+__ ERROR at setup of test_official_splits_spanning_one_subject_are_preserved __
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_meta_converters_reject_empty_records_before_time_endpoint_access[convert_emg2pose] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_meta_converters_reject_empty_records_before_time_endpoint_access[convert_emg2qwerty] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_meta_converters_reject_output_root_nested_in_input_root[convert_emg2pose] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_meta_converters_reject_output_root_nested_in_input_root[convert_emg2qwerty] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_meta_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_emg2pose] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_meta_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_emg2qwerty] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_meta_manifest_replace_failure_cleans_unique_temp[convert_emg2pose] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_meta_manifest_replace_failure_cleans_unique_temp[convert_emg2qwerty] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_run_conversion_records_input_relative_source_and_time_origin[convert_emg2pose] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_run_conversion_records_input_relative_source_and_time_origin[convert_emg2qwerty] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_pose_rejects_nonfinite_joint_angles_and_misaligned_optional_label _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_qwerty_requires_and_validates_typing_labels[None-prompts0-keystrokes] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_qwerty_requires_and_validates_typing_labels[keystrokes1-prompts1-press.*release] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_qwerty_requires_and_validates_typing_labels[keystrokes2-prompts2-finite] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_qwerty_requires_and_validates_typing_labels[keystrokes3-prompts3-start.*end] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_qwerty_pair_commit_rolls_back_first_replacement_on_second_failure _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+__ ERROR at setup of test_qwerty_reader_accepts_the_released_session_layout ___
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_qwerty_reader_rejects_a_session_with_no_text_prompts _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+___ ERROR at setup of test_pose_reader_accepts_the_released_session_layout ____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_____ ERROR at setup of test_pose_reader_keeps_distinct_subjects_distinct _____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_pose_provenance_summarizes_instead_of_duplicating_the_target_array _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_pose_recordings_within_one_session_get_distinct_output_paths _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+________ ERROR at setup of test_emg2pose_resume_skips_finished_records ________
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_emg2pose_resume_rebuilds_a_record_whose_manifest_row_was_lost _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+______ ERROR at setup of test_emg2pose_replace_retries_a_transient_lock _______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+___ ERROR at setup of test_emg2pose_replace_gives_up_after_the_last_attempt ___
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+____ ERROR at setup of test_pretrain_accepts_documented_data_root_override ____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+______ ERROR at setup of test_ema_teacher_is_saved_and_restored_exactly _______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_direct_student_round_trip_serializes_complete_architecture _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_run_metadata_records_manifest_hash_and_execution_context _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+___ ERROR at setup of test_emg2pose_preserves_pose_labels_and_source_split ____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_____ ERROR at setup of test_emg2qwerty_emits_one_linked_record_per_wrist _____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_preserves_16ch_stream_and_labels[convert_gni_discrete_gestures.py-discrete_gesture-labels/events] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_preserves_16ch_stream_and_labels[convert_gni_handwriting.py-handwriting-labels/prompts] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_gni_converter_preserves_16ch_stream_and_labels[convert_gni_wrist.py-wrist_angle-labels/targets/wrist_angles] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_converter_script_executes_as_a_clean_subprocess[convert_emg2pose.py-emg2pose_h5-pose-labels/joint_angles] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_converter_script_executes_as_a_clean_subprocess[convert_emg2qwerty.py-qwerty_h5-typing-labels/keystrokes] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_converter_script_executes_as_a_clean_subprocess[convert_gni_discrete_gestures.py-discrete_gesture-discrete_gesture-labels/events] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_converter_script_executes_as_a_clean_subprocess[convert_gni_handwriting.py-handwriting-handwriting-labels/prompts] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_converter_script_executes_as_a_clean_subprocess[convert_gni_wrist.py-wrist_angle-wrist_angle-labels/targets/wrist_angles] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+___________ ERROR at setup of test_pose_target_and_mask_are_sliced ____________
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_pose_rejects_non_matrix_or_misaligned_joint_angles[joint_angles0-rank-2] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_pose_rejects_non_matrix_or_misaligned_joint_angles[joint_angles1-does not align] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_________ ERROR at setup of test_pose_rejects_nonfinite_joint_angles __________
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_____ ERROR at setup of test_wrist_rejects_scalar_or_non_numeric_targets ______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_handwriting_uses_containing_prompt_and_decodes_bytes _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_______________ ERROR at setup of test_unknown_task_is_rejected _______________
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_window_uses_milliseconds_and_returns_time_major_emg __
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_____ ERROR at setup of test_dataset_construction_does_not_open_h5_files ______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_from_manifest_falls_back_to_split_column_when_official_split_unset _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_from_manifest_prefers_official_split_over_split_column _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_______ ERROR at setup of test_from_manifest_filters_records_by_task_id _______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_from_manifest_rejects_a_task_id_absent_from_the_manifest _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+______ ERROR at setup of test_pose_invalid_ik_frames_become_target_mask _______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_handwriting_returns_prompt_text_without_character_times _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_____ ERROR at setup of test_gesture_events_are_relative_to_window_start ______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_label_times_follow_the_record_clock_at_a_window_boundary _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_dataset_rejects_noncanonical_signal_dtypes[emg-float64-float32] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_dataset_rejects_noncanonical_signal_dtypes[time_s-float32-float64] _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_dataset_rejects_missing_or_mismatched_canonical_root_attributes _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_____ ERROR at setup of test_window_index_stores_only_per_record_geometry _____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_window_indices_by_task_covers_every_window_exactly_once _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_window_size_follows_the_declared_rate_not_the_gapped_clock_span _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+___ ERROR at setup of test_gapped_record_clock_controls_the_open_window_end ___
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_adjacent_clock_windows_do_not_drop_events_between_midpoint_and_next_sample _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_______ ERROR at setup of test_typing_preserves_pair_id_for_each_wrist ________
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_______ ERROR at setup of test_wrist_targets_are_name_keyed_and_aligned _______
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+_ ERROR at setup of test_from_manifest_rejects_a_manifest_that_cannot_select_any_split _
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+___ ERROR at setup of test_dataset_rejects_records_shorter_than_one_window ____
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+__ ERROR at setup of test_label_budget_rejects_a_budget_that_keeps_no_group ___
+..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1311: in mkdir
+    os.mkdir(self, mode)
+E   FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\verification\\baseline\\tests'
+============================== warnings summary ===============================
+tests/test_downstream_module.py::test_test_step_accumulates_event_matches_for_the_epoch
+  C:\Users\18165\Documents\ChatGPT\metafmodel\semg_fm\models\heads.py:70: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+  Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:836.)
+    if class_index and float(confidence[batch, token]) >= threshold:
+
+tests/test_pretrain_module.py::test_validation_all_padding_logs_finite_zero_metrics
+tests/test_pretrain_module.py::test_validation_epoch_loss_ignores_all_padding_batch_weight
+tests/test_pretrain_module.py::test_ema_updates_only_after_optimizer_step_and_teacher_has_no_grads
+tests/test_pretrain_smoke.py::test_circe_pretraining_fast_dev_run_advances_one_global_step
+  C:\Users\18165\Documents\ChatGPT\MetaEMGFM\.venv\Lib\site-packages\lightning\pytorch\trainer\setup.py:175: GPU available but not used. You can set it by doing `Trainer(accelerator='gpu')`.
+
+tests/test_pretrain_module.py::test_validation_all_padding_logs_finite_zero_metrics
+tests/test_pretrain_module.py::test_validation_epoch_loss_ignores_all_padding_batch_weight
+  C:\Users\18165\Documents\ChatGPT\MetaEMGFM\.venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=15` in the `DataLoader` to improve performance.
+
+tests/test_pretrain_module.py::test_ema_updates_only_after_optimizer_step_and_teacher_has_no_grads
+tests/test_pretrain_smoke.py::test_circe_pretraining_fast_dev_run_advances_one_global_step
+  C:\Users\18165\Documents\ChatGPT\MetaEMGFM\.venv\Lib\site-packages\lightning\pytorch\trainer\configuration_validator.py:70: You defined a `validation_step` but have no `val_dataloader`. Skipping val loop.
+
+tests/test_pretrain_module.py::test_ema_updates_only_after_optimizer_step_and_teacher_has_no_grads
+tests/test_pretrain_smoke.py::test_circe_pretraining_fast_dev_run_advances_one_global_step
+  C:\Users\18165\Documents\ChatGPT\MetaEMGFM\.venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=15` in the `DataLoader` to improve performance.
+
+tests/test_pretrain_module.py::test_ema_updates_only_after_optimizer_step_and_teacher_has_no_grads
+tests/test_pretrain_smoke.py::test_circe_pretraining_fast_dev_run_advances_one_global_step
+  C:\Users\18165\Documents\ChatGPT\MetaEMGFM\.venv\Lib\site-packages\lightning\pytorch\loops\fit_loop.py:538: Found 18 module(s) in eval mode at the start of training. This may lead to unexpected behavior during training. If this is intentional, you can ignore this warning.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+ERROR tests/test_checkpoint_resume.py::test_checkpoint_contains_teacher_and_scheduler_state
+ERROR tests/test_checkpoint_resume.py::test_fit_resume_keeps_global_step_and_ema_counter
+ERROR tests/test_cli_integration.py::test_converter_cli_writes_a_valid_tree_and_manifest
+ERROR tests/test_datamodule.py::test_datamodule_yields_task_homogeneous_train_batch
+ERROR tests/test_datamodule.py::test_datamodule_uses_attached_trainer_rank_when_building_loader
+ERROR tests/test_datamodule.py::test_setup_initializes_only_the_requested_split_lifecycle
+ERROR tests/test_datamodule.py::test_eval_loaders_cover_each_imbalanced_task_index_once_without_epoch_variation
+ERROR tests/test_datamodule.py::test_datamodule_rejects_an_empty_training_split
+ERROR tests/test_datamodule.py::test_evaluation_sampler_reads_task_ids_without_opening_h5_files
+ERROR tests/test_downstream_module.py::test_trainer_test_loop_logs_the_primary_metric
+ERROR tests/test_downstream_protocols.py::test_label_budget_keeps_deterministic_subject_groups
+ERROR tests/test_downstream_protocols.py::test_label_budget_rejects_out_of_range_values
+ERROR tests/test_evaluation_outputs.py::test_evaluation_writes_machine_readable_outputs
+ERROR tests/test_evaluation_outputs.py::test_evaluation_writes_events_predictions_as_json_lists
+ERROR tests/test_evaluation_outputs.py::test_evaluation_skips_optional_outputs_when_absent
+ERROR tests/test_fm_manifest.py::test_manifest_resolves_records_and_preserves_task_ids
+ERROR tests/test_fm_manifest.py::test_manifest_rejects_missing_required_columns
+ERROR tests/test_fm_manifest.py::test_manifest_rejects_a_missing_sample_rate_column
+ERROR tests/test_fm_manifest.py::test_manifest_rejects_directory_record_path
+ERROR tests/test_fm_manifest.py::test_manifest_rejects_paths_outside_root[C:/outside.h5]
+ERROR tests/test_fm_manifest.py::test_manifest_rejects_paths_outside_root[../outside.h5]
+ERROR tests/test_fm_manifest.py::test_canonical_fixture_has_root_schema_attributes
+ERROR tests/test_gni_hardening.py::test_gni_converter_rejects_empty_record_before_time_endpoint_access[convert_gni_discrete_gestures]
+ERROR tests/test_gni_hardening.py::test_gni_converter_rejects_empty_record_before_time_endpoint_access[convert_gni_handwriting]
+ERROR tests/test_gni_hardening.py::test_gni_converter_rejects_empty_record_before_time_endpoint_access[convert_gni_wrist]
+ERROR tests/test_gni_hardening.py::test_gni_converter_rejects_output_root_nested_in_input_root[convert_gni_discrete_gestures]
+ERROR tests/test_gni_hardening.py::test_gni_converter_rejects_output_root_nested_in_input_root[convert_gni_handwriting]
+ERROR tests/test_gni_hardening.py::test_gni_converter_rejects_output_root_nested_in_input_root[convert_gni_wrist]
+ERROR tests/test_gni_hardening.py::test_wrist_converter_rejects_sanitized_target_name_collision
+ERROR tests/test_gni_hardening.py::test_wrist_converter_rejects_nonfinite_target_with_field_name
+ERROR tests/test_gni_hardening.py::test_gni_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_gni_discrete_gestures]
+ERROR tests/test_gni_hardening.py::test_gni_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_gni_handwriting]
+ERROR tests/test_gni_hardening.py::test_gni_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_gni_wrist]
+ERROR tests/test_gni_hardening.py::test_gni_manifest_replace_failure_cleans_temp[convert_gni_discrete_gestures]
+ERROR tests/test_gni_hardening.py::test_gni_manifest_replace_failure_cleans_temp[convert_gni_handwriting]
+ERROR tests/test_gni_hardening.py::test_gni_manifest_replace_failure_cleans_temp[convert_gni_wrist]
+ERROR tests/test_gni_hardening.py::test_run_conversion_records_relative_source_file_and_time_provenance[convert_gni_discrete_gestures]
+ERROR tests/test_gni_hardening.py::test_run_conversion_records_relative_source_file_and_time_provenance[convert_gni_handwriting]
+ERROR tests/test_gni_hardening.py::test_run_conversion_records_relative_source_file_and_time_provenance[convert_gni_wrist]
+ERROR tests/test_gni_hardening.py::test_gni_labelled_tasks_require_finite_source_rows[convert_gni_discrete_gestures-discrete_gestures]
+ERROR tests/test_gni_hardening.py::test_gni_labelled_tasks_require_finite_source_rows[convert_gni_handwriting-handwriting]
+ERROR tests/test_gni_hardening.py::test_gni_converter_recovers_subject_identity_from_the_release_file_name[convert_gni_discrete_gestures]
+ERROR tests/test_gni_hardening.py::test_gni_converter_recovers_subject_identity_from_the_release_file_name[convert_gni_handwriting]
+ERROR tests/test_gni_hardening.py::test_gni_converter_recovers_subject_identity_from_the_release_file_name[convert_gni_wrist]
+ERROR tests/test_gni_hardening.py::test_gni_conversion_discovers_hdf5_sources_and_rejects_an_empty_root[convert_gni_discrete_gestures]
+ERROR tests/test_gni_hardening.py::test_gni_conversion_discovers_hdf5_sources_and_rejects_an_empty_root[convert_gni_handwriting]
+ERROR tests/test_gni_hardening.py::test_gni_conversion_discovers_hdf5_sources_and_rejects_an_empty_root[convert_gni_wrist]
+ERROR tests/test_make_splits_cli.py::test_root_make_splits_assigns_unknown_and_preserves_official
+ERROR tests/test_make_splits_cli.py::test_output_is_independent_of_manifest_root
+ERROR tests/test_make_splits_cli.py::test_invalid_official_split_is_rejected
+ERROR tests/test_make_splits_cli.py::test_official_splits_spanning_one_subject_are_preserved
+ERROR tests/test_meta_hardening.py::test_meta_converters_reject_empty_records_before_time_endpoint_access[convert_emg2pose]
+ERROR tests/test_meta_hardening.py::test_meta_converters_reject_empty_records_before_time_endpoint_access[convert_emg2qwerty]
+ERROR tests/test_meta_hardening.py::test_meta_converters_reject_output_root_nested_in_input_root[convert_emg2pose]
+ERROR tests/test_meta_hardening.py::test_meta_converters_reject_output_root_nested_in_input_root[convert_emg2qwerty]
+ERROR tests/test_meta_hardening.py::test_meta_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_emg2pose]
+ERROR tests/test_meta_hardening.py::test_meta_h5_replace_failure_preserves_existing_output_and_cleans_temp[convert_emg2qwerty]
+ERROR tests/test_meta_hardening.py::test_meta_manifest_replace_failure_cleans_unique_temp[convert_emg2pose]
+ERROR tests/test_meta_hardening.py::test_meta_manifest_replace_failure_cleans_unique_temp[convert_emg2qwerty]
+ERROR tests/test_meta_hardening.py::test_run_conversion_records_input_relative_source_and_time_origin[convert_emg2pose]
+ERROR tests/test_meta_hardening.py::test_run_conversion_records_input_relative_source_and_time_origin[convert_emg2qwerty]
+ERROR tests/test_meta_hardening.py::test_pose_rejects_nonfinite_joint_angles_and_misaligned_optional_label
+ERROR tests/test_meta_hardening.py::test_qwerty_requires_and_validates_typing_labels[None-prompts0-keystrokes]
+ERROR tests/test_meta_hardening.py::test_qwerty_requires_and_validates_typing_labels[keystrokes1-prompts1-press.*release]
+ERROR tests/test_meta_hardening.py::test_qwerty_requires_and_validates_typing_labels[keystrokes2-prompts2-finite]
+ERROR tests/test_meta_hardening.py::test_qwerty_requires_and_validates_typing_labels[keystrokes3-prompts3-start.*end]
+ERROR tests/test_meta_hardening.py::test_qwerty_pair_commit_rolls_back_first_replacement_on_second_failure
+ERROR tests/test_meta_hardening.py::test_qwerty_reader_accepts_the_released_session_layout
+ERROR tests/test_meta_hardening.py::test_qwerty_reader_rejects_a_session_with_no_text_prompts
+ERROR tests/test_meta_hardening.py::test_pose_reader_accepts_the_released_session_layout
+ERROR tests/test_meta_hardening.py::test_pose_reader_keeps_distinct_subjects_distinct
+ERROR tests/test_meta_hardening.py::test_pose_provenance_summarizes_instead_of_duplicating_the_target_array
+ERROR tests/test_meta_hardening.py::test_pose_recordings_within_one_session_get_distinct_output_paths
+ERROR tests/test_meta_hardening.py::test_emg2pose_resume_skips_finished_records
+ERROR tests/test_meta_hardening.py::test_emg2pose_resume_rebuilds_a_record_whose_manifest_row_was_lost
+ERROR tests/test_meta_hardening.py::test_emg2pose_replace_retries_a_transient_lock
+ERROR tests/test_meta_hardening.py::test_emg2pose_replace_gives_up_after_the_last_attempt
+ERROR tests/test_pretrain_entry.py::test_pretrain_accepts_documented_data_root_override
+ERROR tests/test_pretrain_module.py::test_ema_teacher_is_saved_and_restored_exactly
+ERROR tests/test_pretrain_module.py::test_direct_student_round_trip_serializes_complete_architecture
+ERROR tests/test_reproducibility.py::test_run_metadata_records_manifest_hash_and_execution_context
+ERROR tests/test_standalone_scripts.py::test_emg2pose_preserves_pose_labels_and_source_split
+ERROR tests/test_standalone_scripts.py::test_emg2qwerty_emits_one_linked_record_per_wrist
+ERROR tests/test_standalone_scripts.py::test_gni_converter_preserves_16ch_stream_and_labels[convert_gni_discrete_gestures.py-discrete_gesture-labels/events]
+ERROR tests/test_standalone_scripts.py::test_gni_converter_preserves_16ch_stream_and_labels[convert_gni_handwriting.py-handwriting-labels/prompts]
+ERROR tests/test_standalone_scripts.py::test_gni_converter_preserves_16ch_stream_and_labels[convert_gni_wrist.py-wrist_angle-labels/targets/wrist_angles]
+ERROR tests/test_standalone_scripts.py::test_converter_script_executes_as_a_clean_subprocess[convert_emg2pose.py-emg2pose_h5-pose-labels/joint_angles]
+ERROR tests/test_standalone_scripts.py::test_converter_script_executes_as_a_clean_subprocess[convert_emg2qwerty.py-qwerty_h5-typing-labels/keystrokes]
+ERROR tests/test_standalone_scripts.py::test_converter_script_executes_as_a_clean_subprocess[convert_gni_discrete_gestures.py-discrete_gesture-discrete_gesture-labels/events]
+ERROR tests/test_standalone_scripts.py::test_converter_script_executes_as_a_clean_subprocess[convert_gni_handwriting.py-handwriting-handwriting-labels/prompts]
+ERROR tests/test_standalone_scripts.py::test_converter_script_executes_as_a_clean_subprocess[convert_gni_wrist.py-wrist_angle-wrist_angle-labels/targets/wrist_angles]
+ERROR tests/test_task_labels.py::test_pose_target_and_mask_are_sliced - FileN...
+ERROR tests/test_task_labels.py::test_pose_rejects_non_matrix_or_misaligned_joint_angles[joint_angles0-rank-2]
+ERROR tests/test_task_labels.py::test_pose_rejects_non_matrix_or_misaligned_joint_angles[joint_angles1-does not align]
+ERROR tests/test_task_labels.py::test_pose_rejects_nonfinite_joint_angles - F...
+ERROR tests/test_task_labels.py::test_wrist_rejects_scalar_or_non_numeric_targets
+ERROR tests/test_task_labels.py::test_handwriting_uses_containing_prompt_and_decodes_bytes
+ERROR tests/test_task_labels.py::test_unknown_task_is_rejected - FileNotFound...
+ERROR tests/test_window_dataset.py::test_window_uses_milliseconds_and_returns_time_major_emg
+ERROR tests/test_window_dataset.py::test_dataset_construction_does_not_open_h5_files
+ERROR tests/test_window_dataset.py::test_from_manifest_falls_back_to_split_column_when_official_split_unset
+ERROR tests/test_window_dataset.py::test_from_manifest_prefers_official_split_over_split_column
+ERROR tests/test_window_dataset.py::test_from_manifest_filters_records_by_task_id
+ERROR tests/test_window_dataset.py::test_from_manifest_rejects_a_task_id_absent_from_the_manifest
+ERROR tests/test_window_dataset.py::test_pose_invalid_ik_frames_become_target_mask
+ERROR tests/test_window_dataset.py::test_handwriting_returns_prompt_text_without_character_times
+ERROR tests/test_window_dataset.py::test_gesture_events_are_relative_to_window_start
+ERROR tests/test_window_dataset.py::test_label_times_follow_the_record_clock_at_a_window_boundary
+ERROR tests/test_window_dataset.py::test_dataset_rejects_noncanonical_signal_dtypes[emg-float64-float32]
+ERROR tests/test_window_dataset.py::test_dataset_rejects_noncanonical_signal_dtypes[time_s-float32-float64]
+ERROR tests/test_window_dataset.py::test_dataset_rejects_missing_or_mismatched_canonical_root_attributes
+ERROR tests/test_window_dataset.py::test_window_index_stores_only_per_record_geometry
+ERROR tests/test_window_dataset.py::test_window_indices_by_task_covers_every_window_exactly_once
+ERROR tests/test_window_dataset.py::test_window_size_follows_the_declared_rate_not_the_gapped_clock_span
+ERROR tests/test_window_dataset.py::test_gapped_record_clock_controls_the_open_window_end
+ERROR tests/test_window_dataset.py::test_adjacent_clock_windows_do_not_drop_events_between_midpoint_and_next_sample
+ERROR tests/test_window_dataset.py::test_typing_preserves_pair_id_for_each_wrist
+ERROR tests/test_window_dataset.py::test_wrist_targets_are_name_keyed_and_aligned
+ERROR tests/test_window_dataset.py::test_from_manifest_rejects_a_manifest_that_cannot_select_any_split
+ERROR tests/test_window_dataset.py::test_dataset_rejects_records_shorter_than_one_window
+ERROR tests/test_window_dataset.py::test_label_budget_rejects_a_budget_that_keeps_no_group
+159 passed, 13 warnings, 121 errors in 11.38s

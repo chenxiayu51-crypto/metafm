@@ -1,0 +1,10 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing c:\users\18165\documents\chatgpt\metafmodel
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: metafmodel
+  Building wheel for metafmodel (pyproject.toml): started
+  Building wheel for metafmodel (pyproject.toml): finished with status 'done'
+  Created wheel for metafmodel: filename=metafmodel-0.2.0-py3-none-any.whl size=120814 sha256=df760419e9200ed38b242bb6c60513a37efc8e2492b4d9fef56bf6d9fe2d2821
+  Stored in directory: C:\Users\18165\AppData\Local\Temp\pip-ephem-wheel-cache-vcz61piv\wheels\de\57\b8\dcd7f5ab6f6d13b944dac44bdee25a1f3a1b00e3b43f935946
+Successfully built metafmodel

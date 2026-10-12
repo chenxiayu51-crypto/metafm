@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 import torch
+from omegaconf import DictConfig, OmegaConf
 from torch.utils.data import DataLoader, Dataset
 
 try:
@@ -49,6 +50,9 @@ def build_datamodule(
         sampler_seed=int(data.get("sampler_seed", 0)),
         task_id=task_id,
         label_budget=float(label_budget),
+        corpus_path=OmegaConf.to_container(data['corpus_path'],resolve=True) if isinstance(data.get('corpus_path'),DictConfig) else data.get('corpus_path'),
+        data_format=str(data.get('format','canonical')),
+        evaluation_split=str(data.get('evaluation_split','test')),
     )
 
 
@@ -156,6 +160,9 @@ class CanonicalDataModule(LightningDataModule):
         sampler_seed: int = 0,
         task_id: str | None = None,
         label_budget: float = 1.0,
+        corpus_path=None,
+        data_format='canonical',
+        evaluation_split='test',
     ) -> None:
         super().__init__()
         if manifest_path is None and not split_paths:
@@ -170,6 +177,12 @@ class CanonicalDataModule(LightningDataModule):
         self.sampler_seed = int(sampler_seed)
         self.task_id = task_id
         self.label_budget = float(label_budget)
+        self.corpus_path=corpus_path
+        if data_format not in ('raw','canonical'): raise ValueError('data.format must be raw or canonical')
+        self.data_format=data_format
+        if evaluation_split not in ('val','test'):
+            raise ValueError('evaluation_split must be val or test; train evaluation is forbidden')
+        self.evaluation_split=evaluation_split
         if not 0.0 < self.label_budget <= 1.0:
             raise ValueError("label_budget must be in (0, 1]")
         self.train_dataset = None
@@ -187,10 +200,15 @@ class CanonicalDataModule(LightningDataModule):
 
     def _dataset_for(self, split: str) -> CanonicalWindowDataset:
         manifest_path = self._manifest_for(split)
-        dataset = CanonicalWindowDataset.from_manifest(
+        dataset_type=CanonicalWindowDataset
+        if self.data_format=='raw':
+            from .raw_adapter import RawWindowDataset
+            dataset_type=RawWindowDataset
+        dataset = dataset_type.from_manifest(
             manifest_path, split=split, window_ms=self.window_ms, stride_ms=self.stride_ms,
             root=self.root if self.root is not None else manifest_path.parent,
             task_id=self.task_id,
+            corpus_path=self.corpus_path,
         )
         # Label budgets constrain the fine-tuning training split only;
         # validation and evaluation always use the full data.
@@ -259,7 +277,7 @@ class CanonicalDataModule(LightningDataModule):
         elif stage == "validate" and self.val_dataset is None:
             self.val_dataset = self._dataset_for("val")
         if stage in (None, "test") and self.test_dataset is None:
-            self.test_dataset = self._dataset_for("test")
+            self.test_dataset = self._dataset_for(self.evaluation_split)
 
     def _loader(self, dataset, sampler) -> DataLoader:
         loader_dataset = _EvaluationDataset(dataset) if isinstance(sampler, TaskEvaluationBatchSampler) else dataset

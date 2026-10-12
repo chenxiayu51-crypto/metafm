@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import copy
 import math
+import random
+import numpy as np
 from collections.abc import Mapping
 from typing import Any
 
@@ -97,6 +99,37 @@ class PretrainModule(LightningModule):
     @property
     def ema_updates(self) -> int:
         return int(self._ema_updates.item())
+
+    def on_save_checkpoint(self, checkpoint):
+        numpy_state=np.random.get_state()
+        # Primitive state supports native PyTorch weights-only checkpoint loads.
+        numpy_safe=(numpy_state[0],numpy_state[1].tolist(),*numpy_state[2:])
+        checkpoint['rng_state']=dict(python=random.getstate(),numpy=numpy_safe,
+                                     torch=torch.get_rng_state(),cuda=torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None)
+
+    def on_load_checkpoint(self, checkpoint):
+        saved=checkpoint.get('hyper_parameters',{})
+        for key,value in self.hparams.items():
+            if key in saved and saved[key]!=value:
+                raise ValueError(f'resume configuration mismatch for {key}; use unchanged training semantics or start a new experiment')
+        self._pending_rng_state=checkpoint.get('rng_state')
+        self._restore_rng_state()
+
+    def _restore_rng_state(self):
+        state=getattr(self,'_pending_rng_state',None)
+        if state:
+            random.setstate(state['python'])
+            numpy_state=state['numpy']
+            np.random.set_state((numpy_state[0],np.asarray(numpy_state[1],dtype=np.uint32),*numpy_state[2:]))
+            torch.set_rng_state(state['torch'].cpu())
+            if torch.cuda.is_available() and state.get('cuda') is not None:
+                torch.cuda.set_rng_state_all([value.cpu() for value in state['cuda']])
+
+    def on_train_start(self):
+        # Module construction and Lightning setup can consume RNG between load
+        # and the first resumed batch. Restore the saved stream again here.
+        self._restore_rng_state()
+        self._pending_rng_state=None
 
     def forward(self, emg: torch.Tensor, observation_mask: torch.Tensor | None = None) -> dict[str, torch.Tensor]:
         return self.student(emg, observation_mask=observation_mask)

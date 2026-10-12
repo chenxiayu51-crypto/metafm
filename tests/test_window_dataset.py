@@ -67,6 +67,12 @@ def _write_split_manifest(canonical_meta_root, official, split_column):
     manifest = pd.read_csv(canonical_meta_root / "manifest.csv", keep_default_na=False)
     manifest["official_split"] = official
     manifest["split"] = split_column
+    # Distinct assigned subject groups; bilateral session remains one group.
+    # The old fixture put a typing pair in train/val and one unknown subject
+    # across three splits, which is forbidden by the integration contract.
+    manifest['dataset_id']=manifest['task_id']
+    typing=manifest.task_id=='typing'
+    manifest.loc[typing,'split']='train'
     path = canonical_meta_root / "split_manifest.csv"
     manifest.to_csv(path, index=False)
     # Keep H5 root attributes consistent with the rewritten manifest so item
@@ -74,6 +80,7 @@ def _write_split_manifest(canonical_meta_root, official, split_column):
     for row in manifest.itertuples():
         with h5py.File(canonical_meta_root / row.path, "r+") as h5:
             h5.attrs["official_split"] = str(row.official_split)
+            h5.attrs['dataset_id']=str(row.dataset_id)
     return manifest
 
 

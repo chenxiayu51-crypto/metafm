@@ -1,0 +1,16 @@
+[
+  {
+    "format": "canonical",
+    "status": "PASS",
+    "workers": 2,
+    "windows": 4,
+    "exact_emg": true
+  },
+  {
+    "format": "raw",
+    "status": "PASS",
+    "workers": 2,
+    "windows": 4,
+    "exact_emg": true
+  }
+]

@@ -1,0 +1,19 @@
+legacy_root: ../MetaEMGFM
+canonical_root: ../MetaEMGFM/data/canonical
+canonical_manifest: ../MetaEMGFM/data/canonical/manifest.csv
+wrist_corpus: ../MetaEMGFM/data/real/wrist/wrist_corpus.csv
+pose_raw_root: ../MetaEMGFM/data/real/pose
+wrist_raw_root: ../MetaEMGFM/data/real/wrist
+output_root: outputs/verification
+window_ms: 200
+stride_ms: 100
+batch_size: 2
+seed: 42
+first_steps: 10
+total_steps: 20
+model:
+  d_model: 32
+  depth: 2
+  heads: 4
+  patch_samples: 40
+data_consistency: full

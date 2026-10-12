@@ -1,0 +1,12 @@
+name: local
+format: canonical
+channels: 16
+root: ${oc.env:META_CANONICAL_ROOT,${hydra:runtime.cwd}/../MetaEMGFM/data/canonical}
+manifest_path: ${oc.env:META_MANIFEST_PATH,${data.root}/manifest.csv}
+corpus_path: ${oc.env:META_CORPUS_PATH,${oc.env:META_WRIST_CORPUS,${hydra:runtime.cwd}/../MetaEMGFM/data/real/wrist/wrist_corpus.csv}}
+task_id: wrist_angle
+window_ms: 200
+stride_ms: 100
+batch_size: 2
+num_workers: 0
+sampler_seed: 42

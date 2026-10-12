@@ -1,0 +1,21 @@
+accelerator: gpu
+devices: 1
+precision: 32-true
+max_epochs: -1
+max_steps: 2
+logger: false
+enable_checkpointing: true
+enable_progress_bar: false
+enable_model_summary: false
+num_sanity_val_steps: 0
+limit_val_batches: 1
+limit_test_batches: 2
+default_root_dir: .
+callbacks:
+  checkpoint:
+    _target_: lightning.pytorch.callbacks.ModelCheckpoint
+    dirpath: .
+    filename: checkpoint_step{step}
+    save_last: true
+    save_top_k: 0
+    every_n_train_steps: 1

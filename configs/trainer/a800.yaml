@@ -1,0 +1,6 @@
+defaults:
+  - a100_ddp
+# Prepared CUDA server profile; hardware and DDP/AMP require server acceptance.
+devices: auto
+precision: bf16-mixed
+use_distributed_sampler: false
