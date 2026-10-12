@@ -1,6 +1,6 @@
 # model verification
 
-Source: `C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_20261012_121246_587071`
+Source: `C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_20261012_121912_773000`
 
 ```json
 {
@@ -31,11 +31,11 @@ Source: `C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_
           32
         ]
       },
-      "forward_s": 1.0661520001012832,
-      "backward_s": 0.3092102000955492,
+      "forward_s": 0.8925480999751016,
+      "backward_s": 0.37918210006318986,
       "peak_memory_bytes": 21364224,
       "finite": true,
-      "feature_std": 0.9825783371925354
+      "feature_std": 0.9486349821090698
     },
     {
       "input": [
@@ -56,11 +56,11 @@ Source: `C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_
           32
         ]
       },
-      "forward_s": 0.0160959999775514,
-      "backward_s": 0.018010100000537932,
+      "forward_s": 0.010368800023570657,
+      "backward_s": 0.00954429991543293,
       "peak_memory_bytes": 46891008,
       "finite": true,
-      "feature_std": 0.9790263175964355
+      "feature_std": 0.9481415152549744
     }
   ],
   "ring_equivariance_max_abs": 4.76837158203125e-07,

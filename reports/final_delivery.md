@@ -3,7 +3,7 @@
 ## 1. 工程状态
 
 唯一主仓库：`C:\Users\18165\Documents\ChatGPT\metafmodel`；MetaEMGFM保留历史成果和数据，不再是正式训练主线。
-Git分支codex/local-integration；导入基准bf322d1；报告生成时HEAD `bf322d179a775925f6fb91ffe970f5d0c1615b86`。
+Git分支codex/local-integration；导入基准bf322d1；报告生成时HEAD `74b22f80ec9ff41a8da9fceb5c04cd1d8d03bc1e`。
 正式集成源码最终commit见同目录git_version.txt。无push/远端PR。
 上游仅main ZIP SHA固定，未取得upstream commit，未伪造来源版本。
 Python 3.12.14、Torch 2.8.0+cu128、CUDA 12.8，
@@ -43,7 +43,7 @@ Wrist 95个train区间，200ms/100ms
 35文件全量signal、relative time、label精确相等；原始SHA256匹配清单。
 raw/canonical窗口边界、metadata split、label mask一致；官方split未修改。
 五任务转换器保留；QWERTY/手势/手写仅夹具，缺真实文件和官方split/corpus。
-详细证据见data_verification.md与`C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_20261012_121246_587071/data_report.json`。
+详细证据见data_verification.md与`C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_20261012_121912_773000/data_report.json`。
 
 ## 4. Encoder 验证
 
@@ -53,8 +53,8 @@ raw/canonical窗口边界、metadata split、label mask一致；官方split未�
 
 |输入|z_eq|z_motion|前向s|反向s|峰值allocated MiB|
 |---|---|---|---|---|---|
-|[2, 400, 16]|[2, 16, 10, 32]|[2, 10, 32]|1.066152|0.309210|20.37|
-|[2, 4000, 16]|[2, 16, 100, 32]|[2, 100, 32]|0.016096|0.018010|44.72|
+|[2, 400, 16]|[2, 16, 10, 32]|[2, 10, 32]|0.892548|0.379182|20.37|
+|[2, 4000, 16]|[2, 16, 100, 32]|[2, 100, 32]|0.010369|0.009544|44.72|
 
 Ring最大绝对误差 4.77e-07；motion invariance
 2.38e-07。真实佩戴旋转/左右手环规则未验证。
@@ -68,14 +68,14 @@ Student更新、Teacher更新、无Teacher梯度，EMA count20。
 恢复student/teacher/optimizer/scheduler准确、global_step10继续、RNG保存恢复。
 训练semantics hparams校验通过。FP32 AMP NOT_RUN；采样序列不保证复现。
 有限loss和feature std不证明预训练有研究收益。无合法val因此无best。
-最终checkpoint：`C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\pretrain\smoke_wrist_20261012_121246_587071\resumed\checkpoint_last.ckpt`。
+最终checkpoint：`C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\pretrain\smoke_wrist_20261012_121912_773000\resumed\checkpoint_last.ckpt`。
 
 ## 6. Pose 验证
 
 实际SSL Student 45 tensors strict加载；missing/unexpected keys空，配置匹配，逐tensor精确。
 features [2, 10, 32] → head [2, 10, 20] →
 线性插值 [2, 400, 20]；EMG/label/no_ik_failure同sample slice。
-真实val forward loss 7.37638378，仅接口诊断。单位未缩放，
+真实val forward loss 8.16215801，仅接口诊断。单位未缩放，
 弧度约定需官方确认。probe/partial/full均合成数据原生2步、freeze梯度和状态保存恢复PASS。
 真实监督微调BLOCKED，未用val训练。真实val评测2batch加载合成head，
 评测接口PASS，独立研究评测BLOCKED；不把其MAE/RMSE当泛化成绩。
@@ -111,7 +111,7 @@ features [2, 10, 32] → head [2, 10, 20] →
 |真实三类新任务|BLOCKED|缺真实文件/官方协议；夹具PASS|
 |独立Pose研究评测|BLOCKED|缺合法真实训练及test|
 
-最新run：`C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_20261012_121246_587071`；统一状态13 PASS/1 BLOCKED/0 FAIL。
+最新run：`C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_20261012_121912_773000`；统一状态13 PASS/1 BLOCKED/0 FAIL。
 
 ## 9. 遗留问题
 

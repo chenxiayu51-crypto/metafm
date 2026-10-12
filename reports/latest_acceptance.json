@@ -99,11 +99,11 @@
               32
             ]
           },
-          "forward_s": 1.0661520001012832,
-          "backward_s": 0.3092102000955492,
+          "forward_s": 0.8925480999751016,
+          "backward_s": 0.37918210006318986,
           "peak_memory_bytes": 21364224,
           "finite": true,
-          "feature_std": 0.9825783371925354
+          "feature_std": 0.9486349821090698
         },
         {
           "input": [
@@ -124,11 +124,11 @@
               32
             ]
           },
-          "forward_s": 0.0160959999775514,
-          "backward_s": 0.018010100000537932,
+          "forward_s": 0.010368800023570657,
+          "backward_s": 0.00954429991543293,
           "peak_memory_bytes": 46891008,
           "finite": true,
-          "feature_std": 0.9790263175964355
+          "feature_std": 0.9481415152549744
         }
       ],
       "ring_equivariance_max_abs": 4.76837158203125e-07,
@@ -161,13 +161,13 @@
       "steps": 20,
       "batch_size": 2,
       "last_loss": 0.34405308961868286,
-      "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\pretrain\\smoke_wrist_20261012_121246_587071\\resumed\\checkpoint_last.ckpt"
+      "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\pretrain\\smoke_wrist_20261012_121912_773000\\resumed\\checkpoint_last.ckpt"
     }
   },
   "CHECKPOINT_RESUME": {
     "status": "PASS",
     "details": {
-      "source": "C:/Users/18165/Documents/ChatGPT/metafmodel/outputs/pretrain/smoke_wrist_20261012_121246_587071/first/checkpoint_last.ckpt",
+      "source": "C:/Users/18165/Documents/ChatGPT/metafmodel/outputs/pretrain/smoke_wrist_20261012_121912_773000/first/checkpoint_last.ckpt",
       "saved_step": 10,
       "student_exact": true,
       "teacher_exact": true,
@@ -182,7 +182,7 @@
   "POSE_WEIGHT_LOADING": {
     "status": "PASS",
     "details": {
-      "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\pretrain\\smoke_wrist_20261012_121246_587071\\resumed\\checkpoint_last.ckpt",
+      "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\pretrain\\smoke_wrist_20261012_121912_773000\\resumed\\checkpoint_last.ckpt",
       "missing_keys": [],
       "unexpected_keys": [],
       "loaded_tensors": 45,
@@ -213,10 +213,10 @@
         400,
         20
       ],
-      "loss": 7.3763837814331055,
+      "loss": 8.162158012390137,
       "metrics": {
-        "mae": 2.0502021312713623,
-        "rmse": 2.715949773788452,
+        "mae": 2.102165937423706,
+        "rmse": 2.8569490909576416,
         "count": 16000.0
       },
       "split": "val",
@@ -234,29 +234,29 @@
         "status": "PASS",
         "protocols": {
           "probe": {
-            "synthetic_loss": 1.3850551843643188,
+            "synthetic_loss": 1.5743143558502197,
             "frozen_parameters": 43,
             "frozen_unchanged": true,
             "head_updated": true,
-            "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\finetune\\synthetic_pose_20261012_121246_587071\\probe\\last.ckpt",
+            "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\finetune\\synthetic_pose_20261012_121912_773000\\probe\\last.ckpt",
             "global_step": 2,
             "save_load_exact": true
           },
           "partial": {
-            "synthetic_loss": 1.4245121479034424,
+            "synthetic_loss": 1.415610432624817,
             "frozen_parameters": 24,
             "frozen_unchanged": true,
             "head_updated": true,
-            "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\finetune\\synthetic_pose_20261012_121246_587071\\partial\\last.ckpt",
+            "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\finetune\\synthetic_pose_20261012_121912_773000\\partial\\last.ckpt",
             "global_step": 2,
             "save_load_exact": true
           },
           "full": {
-            "synthetic_loss": 1.1609326601028442,
+            "synthetic_loss": 1.6645479202270508,
             "frozen_parameters": 0,
             "frozen_unchanged": true,
             "head_updated": true,
-            "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\finetune\\synthetic_pose_20261012_121246_587071\\full\\last.ckpt",
+            "checkpoint": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\finetune\\synthetic_pose_20261012_121912_773000\\full\\last.ckpt",
             "global_step": 2,
             "save_load_exact": true
           }
@@ -276,7 +276,7 @@
         "test/pose_rmse": 2.6916167736053467,
         "test/pose_count": 16000.0
       },
-      "output": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\evaluation\\pose_interface_20261012_121246_587071"
+      "output": "C:\\Users\\18165\\Documents\\ChatGPT\\metafmodel\\outputs\\evaluation\\pose_interface_20261012_121912_773000"
     }
   }
 }

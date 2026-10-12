@@ -65,4 +65,4 @@ $pythonExecutable='../MetaEMGFM/.venv/Scripts/python.exe'
 待另行确认永久删除的候选仅此已验证隔离build；本轮没有请求删除。
 
 清理后主工程：312 passed, 36 warnings in 20.53s；历史工程：43 passed, 1 warning in 9.48s。
-清理后统一验收：`C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_20261012_121246_587071`，13 PASS / 1 BLOCKED / 0 FAIL / 0 NOT_RUN。
+清理后统一验收：`C:\Users\18165\Documents\ChatGPT\metafmodel\outputs\verification\local_20261012_121912_773000`，13 PASS / 1 BLOCKED / 0 FAIL / 0 NOT_RUN。

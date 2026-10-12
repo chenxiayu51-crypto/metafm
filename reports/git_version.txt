@@ -1,0 +1,4 @@
+Integration source commit: 74b22f80ec9ff41a8da9fceb5c04cd1d8d03bc1e
+Branch: codex/local-integration
+Imported baseline: bf322d1
+Upstream commit: unavailable; archive SHA fixed in UPSTREAM.md
