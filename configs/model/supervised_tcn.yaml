@@ -1,0 +1,8 @@
+# Ordinary-channel supervised baseline; this is not a ring-aware architecture.
+name: supervised_tcn
+d_model: 128
+depth: 6
+patch_samples: 40
+channels: 16
+kernel_size: 3
+dropout: 0.1

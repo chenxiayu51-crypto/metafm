@@ -1,0 +1,4 @@
+# Linear per-window gain drift simulating slow electrode impedance change.
+name: gain_drift
+start_gain: 0.9
+end_gain: 1.1

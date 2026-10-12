@@ -1,0 +1,5 @@
+# Short contiguous signal loss: zero `count` samples (at 2 kHz, 10 samples
+# equal 5 ms) and mark them missing in the observation mask.
+name: temporal_loss
+start: 0
+count: 10

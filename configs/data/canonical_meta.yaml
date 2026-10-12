@@ -1,0 +1,9 @@
+name: canonical_meta
+channels: 16
+root: null
+manifest_path: null
+window_ms: 200
+stride_ms: 100
+batch_size: 8
+num_workers: 4
+sampler_seed: 0

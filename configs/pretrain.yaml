@@ -1,0 +1,52 @@
+defaults:
+  - data: canonical_meta
+  - model: ring_criss_cross
+  - trainer: a100_ddp
+  - _self_
+
+task: pretrain
+seed: 0
+resume_from: null
+
+mask:
+  temporal_span: 2
+  ring_arc: 3
+  full_channel_probability: 0.1
+  block_shape: [2, 2]
+  random_patch_probability: 0.15
+
+objective:
+  latent_weight: 1.0
+  kinematic_weight: 1.0
+  kinematic_dim: null
+  ema_decay: 0.996
+
+optimizer:
+  learning_rate: 0.001
+  weight_decay: 0.05
+  warmup_steps: 1000
+  max_steps: 100000
+
+# The corpus is far too large for an epoch to be a useful unit: with the
+# official split and the default window/batch size, an epoch is ~4.5M batches
+# (measured 2026-10-10; ~36M windows over the train records), so an epoch-based
+# schedule would leave the cosine decay flat for 99% of the run and never reach
+# the first validation.  Stop on the same step count the schedule is built
+# from, and validate -- and therefore checkpoint -- periodically.
+trainer:
+  max_epochs: -1
+  max_steps: ${optimizer.max_steps}
+  check_val_every_n_epoch: null
+  val_check_interval: 2000
+  # One full pass over the validation split is ~610k batches, so a validation
+  # budget rather than a full sweep keeps the cadence affordable.  The
+  # evaluation sampler divides this budget across tasks and interleaves them,
+  # so the truncated prefix still spans every task instead of only the first.
+  limit_val_batches: 2000
+
+# Run inside the Hydra output directory so checkpoints, tensorboard logs, and
+# metadata all land next to the resolved config. Paths passed from the CLI
+# (data.root, manifest_path, checkpoint_path) must therefore be absolute.
+hydra:
+  job:
+    chdir: true

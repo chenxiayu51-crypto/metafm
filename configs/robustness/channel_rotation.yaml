@@ -1,0 +1,4 @@
+# Circular electrode-ring rotation. Shifts 1, 2, 4, 8 correspond to 22.5, 45,
+# 90, and 180 degrees on the 16-electrode ring.
+name: channel_rotation
+shift: 2

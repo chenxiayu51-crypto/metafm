@@ -1,0 +1,9 @@
+accelerator: cpu
+devices: 1
+strategy: auto
+precision: 32-true
+fast_dev_run: true
+accumulate_grad_batches: 1
+# The rich progress bar fails on GBK Windows consoles (UnicodeEncodeError);
+# smoke runs do not need it.
+enable_progress_bar: false

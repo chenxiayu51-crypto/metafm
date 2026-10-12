@@ -1,0 +1,10 @@
+# GNI handwriting prompts span letters, digits, words, random strings, phrases,
+# and instruction prompts that carry arrows and a pinch glyph. The vocabulary is
+# generated from a full scan of all 804 converted records (72 characters); it
+# includes every capital letter, which sampling repeatedly missed. A character
+# outside this list raises at the first batch and the error names it.
+name: handwriting
+output_dim: null
+target_name: null
+class_names: []
+vocabulary: [" ", "!", "\"", "'", ",", "-", ".", "/", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ":", "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "}", "←", "→", "🤏"]

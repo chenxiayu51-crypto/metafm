@@ -1,0 +1,11 @@
+# GNI wrist angles: flexion/extension and radial/ulnar deviation. The
+# converter names targets from the sanitized source fields; verified against the
+# converted HDF5 — the release emits a single 'wrist_angles' target, not the
+# 'flexion_extension' this file originally guessed. That target stores both
+# angle axes, so the head output must be 2-wide: the downstream module rejects
+# any width that does not match the canonical target.
+name: wrist_angle
+output_dim: 2
+target_name: wrist_angles
+class_names: []
+vocabulary: []

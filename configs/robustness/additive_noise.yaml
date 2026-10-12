@@ -1,0 +1,5 @@
+# Zero-mean Gaussian sensor noise with a fixed per-run generator seed.
+# Choose std relative to the normalized signal scale of each corpus.
+name: additive_noise
+std: 0.1
+seed: 0

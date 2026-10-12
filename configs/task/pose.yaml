@@ -1,0 +1,8 @@
+# emg2pose hand joint angles. Meta's emg2pose provides 20 joint angles per
+# frame; verify the converted joint_angles width before training — a mismatch
+# raises a clear dimension error at the first batch.
+name: pose
+output_dim: 20
+target_name: null
+class_names: []
+vocabulary: []

@@ -1,0 +1,9 @@
+# CBraMod-like core-mechanism baseline, not an official implementation.
+# Channel order is deliberately linear (0..15); no ring prior is included.
+name: cbramod
+d_model: 128
+depth: 6
+heads: 8
+patch_samples: 40
+channels: 16
+dropout: 0.1

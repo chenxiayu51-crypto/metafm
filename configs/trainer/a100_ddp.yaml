@@ -1,0 +1,25 @@
+accelerator: gpu
+devices: auto
+strategy: auto
+precision: bf16-mixed
+max_epochs: 100
+accumulate_grad_batches: 1
+# The batch samplers already shard by rank/world_size themselves, so Lightning
+# must not inject a distributed sampler on top: it only sees the auto-filled
+# sequential `sampler` and would misjudge the DataLoader as unsupported,
+# failing every DDP run before the first batch.
+use_distributed_sampler: false
+# bf16 runs are more prone to rare gradient spikes; clip so a single spike
+# cannot push the model into a bad region over a 100k-step schedule.
+gradient_clip_val: 1.0
+# Rich's progress renderer cannot reliably emit Unicode to legacy GBK consoles.
+enable_progress_bar: false
+callbacks:
+  checkpoint:
+    _target_: lightning.pytorch.callbacks.ModelCheckpoint
+    dirpath: checkpoints
+    filename: "{epoch}-{step}"
+    monitor: val/loss
+    mode: min
+    save_top_k: 1
+    save_last: true

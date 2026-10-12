@@ -1,0 +1,30 @@
+.worktrees/
+deliverables/physio_fm_ppt/rendered/
+
+# Python runtime artifacts
+__pycache__/
+.pytest_cache/
+.pytest_tmp/
+
+# Local synthetic smoke dataset and generator
+.smoke/
+
+# Hydra run outputs
+outputs/
+multirun/
+
+# Lightning artifacts written when running outside the Hydra run dir
+lightning_logs/
+checkpoints/
+
+# 第三方 sEMG 数据集原始文件（245 GB，CC BY-NC-SA / CC BY-NC 许可，禁止入库与再分发）
+emg_data/
+
+# 由 emg_data/ 转换出的 canonical H5（体积随源数据同量级）
+emg_data_canonical/
+
+# 实验与验证运行产物（smoke、审计、验证运行；仅本地保留）
+runs/
+
+# 被主仓库取代的旧仓库归档（git bundle 与历史 PowerShell 工作流）
+archive/

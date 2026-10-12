@@ -1,0 +1,10 @@
+# BENDR-like core-mechanism reproduction, not an official implementation.
+name: bendr
+d_model: 128
+depth: 6
+heads: 8
+patch_samples: 40
+channels: 16
+dropout: 0.1
+mask_probability: 0.15
+mask_span: 3

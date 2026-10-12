@@ -1,0 +1,5 @@
+h5py>=3.8
+numpy>=1.24
+pandas>=1.5
+tables>=3.8
+pytest>=7.0

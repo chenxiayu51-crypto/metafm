@@ -1,0 +1,28 @@
+defaults:
+  - data: canonical_meta
+  - model: ring_criss_cross
+  - task: pose
+  - trainer: a100_ddp
+  - _self_
+
+command: finetune
+seed: 0
+resume_from: null
+pretrained_checkpoint: null
+# Downstream protocol selection (design doc §10):
+#   finetune_mode: full | partial | probe
+#   unfrozen_blocks: last N backbone blocks trained in partial mode
+#   label_budget: fraction of subject groups used for training (1/5/10/100%)
+finetune_mode: full
+unfrozen_blocks: 1
+label_budget: 1.0
+optimizer:
+  learning_rate: 0.001
+  weight_decay: 0.05
+
+# Run inside the Hydra output directory so checkpoints, tensorboard logs, and
+# metadata all land next to the resolved config. Paths passed from the CLI
+# (data.root, manifest_path, checkpoint_path) must therefore be absolute.
+hydra:
+  job:
+    chdir: true

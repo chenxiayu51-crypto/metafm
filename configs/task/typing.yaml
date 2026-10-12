@@ -1,0 +1,9 @@
+# emg2qwerty prompts are English sentences. The vocabulary is generated from a
+# full scan of all 2270 converted records (31 characters); every prompt ends
+# with the RETURN SYMBOL (U+23CE). A character outside this list raises at the
+# first batch and the error names the offending character.
+name: typing
+output_dim: null
+target_name: null
+class_names: []
+vocabulary: [" ", "'", ",", ".", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "⏎"]

@@ -1,0 +1,10 @@
+# GNI discrete_gestures event classes. Verified against the converted HDF5: the
+# release emits index/middle press and release plus five thumb gestures. The
+# four directional swipes and 'thumb_tap' this file originally carried do not
+# occur in the data, and a mismatched label raises at the first batch.
+name: discrete_gesture
+output_dim: null
+target_name: null
+class_names: [index_press, index_release, middle_press, middle_release, thumb_click, thumb_down, thumb_in, thumb_out, thumb_up]
+vocabulary: []
+event_tolerance_s: 0.05

@@ -1,0 +1,6 @@
+# Zero a contiguous run of electrodes (wrapping around the ring). count=1 is
+# random single-channel dropout; larger counts simulate adjacent missing
+# electrodes. Omit `start` to pick it randomly with the configured seed.
+name: channel_dropout
+count: 1
+seed: 0

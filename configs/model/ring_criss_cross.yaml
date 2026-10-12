@@ -1,0 +1,7 @@
+name: ring_criss_cross
+d_model: 128
+depth: 6
+heads: 8
+patch_samples: 40
+channels: 16
+dropout: 0.0

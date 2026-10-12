@@ -1,0 +1,21 @@
+defaults:
+  - data: canonical_meta
+  - model: ring_criss_cross
+  - task: pose
+  - robustness: none
+  - trainer: a100_ddp
+  - _self_
+
+command: evaluate
+seed: 0
+checkpoint_path: null
+output_dir: null
+# Write per-window predictions.h5 (CTC text or decoded events) to the run dir.
+save_predictions: false
+
+# Run inside the Hydra output directory so logs and metadata land next to the
+# resolved config. Paths passed from the CLI (data.root, manifest_path,
+# checkpoint_path) must therefore be absolute.
+hydra:
+  job:
+    chdir: true

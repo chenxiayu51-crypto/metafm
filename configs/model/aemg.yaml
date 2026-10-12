@@ -1,0 +1,10 @@
+# AEMG-like VQ baseline, not an official implementation.
+name: aemg
+d_model: 128
+depth: 6
+heads: 8
+patch_samples: 40
+channels: 16
+codebook_size: 512
+commitment_cost: 0.25
+dropout: 0.1
