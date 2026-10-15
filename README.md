@@ -8,6 +8,42 @@ Hydra/Lightning 主干。E3 五语料联合预训练是当前唯一正式启动�
 
 ---
 
+## 整体架构：两阶段
+
+```
+阶段一  自监督预训练（当前唯一正式目标 E3）
+        五个语料【官方 train】+【官方 val 仅用于监控】
+        → 无标签、无任务头
+        → Masked Latent + EMA Teacher
+        → 通用 sEMG Encoder（student.*，约 1.6M 参数）
+
+阶段二  下游微调（例如 Pose）
+        Encoder + 任务头（20DoF 关节角）
+        → 以阶段一的 checkpoint 初始化 Encoder
+        → 三种协议 full / partial / probe，支持 1/5/10/100% 标签比例
+```
+
+两阶段共用**同一个** `RingCrissCrossEncoder`，不存在"预训练用一套、微调用另一套"
+的情况。微调加载时会逐项校验 `d_model / depth / heads / patch_samples / channels`
+是否与预训练一致，不一致直接报 `backbone configuration mismatch`。
+
+预训练**只使用官方 train**，官方 val 仅用于 `val/loss` 监控与 checkpoint 选择，
+**官方 test 从不参与预训练**。
+
+### ⚠️ 当前数据阻塞（见 [docs/known_issues.md](docs/known_issues.md) P0）
+
+上述两阶段在**代码上已就绪**，但在**你现有数据上都无法跑真实训练**：
+
+- 阶段一需要五个语料的官方 split 与官方 `nature_corpus.csv`；目前缺 QWERTY /
+  Gesture / Handwriting 的真实数据，因此 E3 真实五语料训练尚不能启动。
+- 阶段二需要官方 **Pose train**；目前手上只有 30 份 **official val**，因此真实
+  监督微调与独立研究评测处于 BLOCKED 状态。
+
+在补齐这两批数据之前，跑通的是工程链路（Dataset/DataLoader/训练/checkpoint/
+恢复），**不是研究结论**。
+
+---
+
 ## 快速开始（Linux GPU 服务器）
 
 ### 0. 克隆
@@ -113,7 +149,10 @@ bash scripts/run_e3_server.sh /srv/datasets/meta_canonical
 
 - 每 1000 步写 `last.ckpt`，同时保留最佳 `val/loss` checkpoint。
 - Checkpoint 含 Student、Teacher、Optimizer、LR Scheduler、Global Step 与 RNG 状态。
-- 恢复训练严格还原全部状态；关键配置不一致时**拒绝启动**（`resume configuration mismatch`）。
+- 恢复训练还原 Global Step、Optimizer、LR Scheduler、EMA 计数与 RNG 流；关键配置
+  不一致时**拒绝启动**（`resume configuration mismatch`）。
+  注意：**sampler 游标未纳入 checkpoint**，恢复后不会逐样本复现中断前的顺序
+  （见 [docs/known_issues.md](docs/known_issues.md) P1）。
 - 五语料 Task-balanced Sampler，`diagnostics.json` 记录每个语料实际参与的 batch 数。
 - 记录 Student/Teacher 更新状态与特征统计。
 - 出现 NaN/Inf 立即停止并写出 `e3_error.json`，不会把坏更新写进 checkpoint。
