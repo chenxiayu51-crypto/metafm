@@ -1,0 +1,28 @@
+# E3 production pretraining -- Linux GPU server.
+#
+# These are the exact versions that produced the verified E3 run recorded in
+# docs/E3_ACCEPTANCE.md (Python 3.12). They are a tested-together set, not a
+# guess: bumping one without re-running scripts/verify_server.sh may change
+# the training numerics or break the Lightning/Hydra integration.
+#
+# Install order matters. PyTorch first, from the CUDA wheel index that matches
+# this host's driver -- see scripts/setup_server.sh, which prints the exact
+# command for the detected driver instead of installing anything silently.
+#
+#   # example for a driver that supports CUDA 12.8 (A800 / A100 / Ampere+):
+#   python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+#   python -m pip install -r requirements-server.txt
+#
+# PyTorch is deliberately listed without a local +cuXXX tag so this file does
+# not fight the wheel index you chose.
+
+torch==2.8.0
+torchmetrics==1.9.0
+lightning==2.6.6
+hydra-core==1.3.7
+omegaconf==2.3.1
+h5py==3.16.0
+numpy==2.5.3
+pandas==3.0.6
+tables==3.11.1
+pytest==9.1.1

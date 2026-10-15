@@ -1,0 +1,36 @@
+defaults:
+  - a100_ddp
+
+# E3 production pretraining profile.
+#
+# Inherits the A100/A800 class settings from a100_ddp (gpu accelerator, bf16
+# mixed precision, gradient clipping, no Lightning-injected distributed
+# sampler) and adds the two reliability guarantees that the E3 release needs on
+# a long unattended run:
+#
+#   * written every 1000 optimizer steps, so a crash never costs more than
+#     that window of work.  save_last keeps `last.ckpt` current and save_top_k
+#     keeps the best `val/loss` checkpoint from the 2000-step validation.
+#   * E3RunDiagnostics records per-corpus batch counts, student/teacher update
+#     status, feature statistics and stops the run on NaN/Inf.
+#
+# This file changes no model, objective or data semantics; it is a trainer
+# profile only.
+devices: auto
+precision: bf16-mixed
+use_distributed_sampler: false
+
+callbacks:
+  diagnostics:
+    _target_: semg_fm.e3_diagnostics.E3RunDiagnostics
+    output_dir: .
+    param_check_interval: 10
+  checkpoint:
+    _target_: lightning.pytorch.callbacks.ModelCheckpoint
+    dirpath: checkpoints
+    filename: "{epoch}-{step}"
+    monitor: val/loss
+    mode: min
+    save_top_k: 1
+    save_last: true
+    every_n_train_steps: 1000
