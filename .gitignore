@@ -36,6 +36,12 @@
 /manifest.csv
 /nature_corpus.csv
 
+# A real-mini export is derived from the real corpus and belongs on the
+# workstation or a transfer location, never in the repository.
+/real_mini/
+/meta_real_mini/
+/*_real_mini/
+
 # ---------------------------------------------------------------------------
 # Model weights, checkpoints and training outputs.
 # Outputs live outside the repository (E3_RUN_ROOT, default /srv/experiments/e3).

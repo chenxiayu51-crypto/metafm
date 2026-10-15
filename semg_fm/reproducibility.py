@@ -44,15 +44,29 @@ def effective_global_batch_size(data_config: Mapping[str, Any], trainer_config: 
     return batch_size * devices * accumulation
 
 
-def _git_commit() -> str | None:
-    """Return the current commit when Git metadata is available, otherwise null."""
+def _git(*args: str) -> str | None:
+    """Run a Git command against the SOURCE TREE, not the caller's directory.
+
+    ``hydra.job.chdir`` moves the working directory into the run directory
+    before the entry point runs, and on a server the run directory deliberately
+    lives outside the repository (E3_RUN_ROOT=/srv/experiments/e3). Asking Git
+    from there finds no repository, so provenance would silently degrade to
+    ``null`` exactly where it matters most. Anchor every call to the package's
+    own checkout instead.
+    """
+    repo = Path(__file__).resolve().parents[1]
     try:
         result = subprocess.run(
-            ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True, timeout=5
+            ["git", *args], cwd=repo, check=True, capture_output=True, text=True, timeout=10
         )
     except (OSError, subprocess.SubprocessError):
         return None
     return result.stdout.strip() or None
+
+
+def _git_commit() -> str | None:
+    """Return the current commit when Git metadata is available, otherwise null."""
+    return _git("rev-parse", "HEAD")
 
 
 def write_run_metadata(

@@ -44,6 +44,25 @@ Hydra/Lightning 主干。E3 五语料联合预训练是当前唯一正式启动�
 
 ---
 
+## 三种运行模式
+
+三者共用**同一套** Encoder、EMA Teacher–Student、Masked Latent 目标、Dataset/
+Collate、Optimizer 与 Checkpoint 机制。只有数据规模、batch size、worker 数、
+训练步数和输出路径不同。
+
+| 模式 | 入口 | 数据 | 用途 |
+|---|---|---|---|
+| `local_synthetic` | `python scripts/e3_oneclick.py local` | 自动生成的合成夹具 | 软件链路冒烟，**不涉及真实信号** |
+| `local_real` | `python scripts/verify_local_real.py --data-root D:/emg_data/real_mini` | 从服务器导出的真实 Mini | 在真实信号上验证全部训练机制 |
+| `server_full` | `bash scripts/run_e3_server.sh /srv/datasets/meta_canonical` | 服务器完整五语料 | 正式基础模型预训练 |
+
+真实 Mini 的导出与使用见 [docs/REAL_MINI_DATASET.md](docs/REAL_MINI_DATASET.md)，
+三种模式的详细区别与各自断言的检查见
+[docs/LOCAL_VALIDATION.md](docs/LOCAL_VALIDATION.md) 与
+[docs/E3_TRAINING_PIPELINE.md](docs/E3_TRAINING_PIPELINE.md)。
+
+---
+
 ## 快速开始（Linux GPU 服务器）
 
 ### 0. 克隆
@@ -119,8 +138,12 @@ DataLoader 是否产出五任务 Batch。只有全部通过才返回 0。
 bash scripts/run_e3_server.sh /srv/datasets/meta_canonical
 ```
 
-这就是完整命令。它调用本仓库唯一的训练入口 `scripts/e3_oneclick.py server`，
-后者运行原生 `pretrain.py`，不存在第二套训练逻辑。
+这就是完整命令。它会**先跑服务器预检**（环境、数据、DataLoader、真实数据短训练），
+全部通过后才调用本仓库唯一的训练入口 `scripts/e3_oneclick.py server`，后者运行原生
+`pretrain.py`。不存在第二套训练逻辑。
+
+预检是**独立进程**：它内部的短训练不会污染正式训练的权重、optimizer 或 scheduler。
+预检失败则训练根本不启动。
 
 完整部署说明（含产出物、恢复训练、故障排查）见
 **[docs/SERVER_DEPLOY.md](docs/SERVER_DEPLOY.md)**。
@@ -186,18 +209,33 @@ checkpoints/epoch=N-step=M.ckpt     最佳 val/loss
 
 ---
 
-## 本地冒烟测试（非 Linux、无 A800 时）
+## 本地验证（非 Linux、无 A800 时）
 
-```bash
-# Windows PowerShell
+**合成冒烟**：生成**合成**夹具（带 `.E3_SYNTHETIC_DO_NOT_TRAIN` 标记），跑通五任务
+Dataset/DataLoader、GPU 训练与 checkpoint 写入。服务器模式会拒绝这个标记。
+
+```powershell
 $env:META_PYTHON = "path\to\python.exe"
 python scripts/e3_oneclick.py local
 ```
 
-本地模式会生成**合成**夹具（带 `.E3_SYNTHETIC_DO_NOT_TRAIN` 标记）并跑通五任务
-Dataset/DataLoader、GPU 训练与 checkpoint 写入。服务器模式会拒绝这个标记。
+**真实 Mini 验证**（推荐，使用真实信号）：先在服务器导出小数据，再在本地跑：
 
-> 通过冒烟测试不代表研究成功：合成数据的指标不能证明真实泛化，5 步只是工程验收。
+```powershell
+.\scripts\run_local_real.ps1 -DataRoot D:\emg_data\real_mini
+```
+
+它会断言五语料数据契约、无泄漏、逐语料真实梯度与 EMA、bf16、表征未坍塌、
+N 步真实训练、以及 checkpoint 重载 / 恢复 / Global Step。同时**实测逐语料采样比例**
+——见下方重要提示。
+
+> ⚠️ **不要以为任务名里有 "Balanced" 就是五语料等比例。**
+> `TaskBalancedBatchSampler` 只平衡**顺序**（每轮每语料一个 batch）；每个语料实际贡献
+> `floor(窗口数 / batch_size)` 个 batch，所以它在训练步数中的**占比取决于各语料的窗口数**。
+> 本地 Mini 实测：pose 18.8% / typing 43.8% / 其余各 12.5%（等分应为 20%）。
+> 真实语料上差异会更大。要改比例必须是有记录、有意识的决定，因为它改变训练数据分布。
+
+> 通过合成或 Mini 验证都只证明**工程链路**，不证明基础模型表征质量。
 
 测试套件：
 
@@ -219,7 +257,10 @@ python -m pytest tests/ -q
 
 ## 文档索引
 
-- [服务器部署](docs/SERVER_DEPLOY.md)：安装、验证、启动、恢复、故障排查
+- [服务器部署](docs/SERVER_DEPLOY.md)：安装、验证、预检门禁、启动、恢复、故障排查
+- [E3 训练流程](docs/E3_TRAINING_PIPELINE.md)：三种模式、一步训练到底算什么、产出物、可靠性
+- [本地验证](docs/LOCAL_VALIDATION.md)：合成 vs 真实 Mini、五类断言、采样比例实测
+- [真实 Mini 数据集](docs/REAL_MINI_DATASET.md)：从服务器导出的完整方法与迁移
 - [数据格式](docs/DATA_LAYOUT.md)：规范化 HDF5 契约、splits.csv、nature_corpus.csv
 - [数据契约](docs/data_contract.md)：`intervals.py`、`raw_adapter.py`、`window_dataset.py`
 - [模型架构](docs/architecture.md)：`models/ring_criss_cross.py`、`patch_encoder.py`、`ring_attention.py`

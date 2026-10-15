@@ -128,6 +128,36 @@ the same code path a launch uses.
 
 Exit status is 0 only when nothing failed. Do not launch on a FAIL.
 
+### The preflight gate
+
+`run_e3_server.sh` additionally runs `scripts/server_preflight.py` immediately
+before training, as a **separate process**, and starts training only if every
+section passed. It goes further than `verify_server.sh`: environment and disk
+headroom, a per-corpus census and leakage matrix, the measured RAM cost of the
+full window index, multi-worker DataLoader loading, and a short real GPU run
+(`GPU_SMOKE`) that also round-trips a checkpoint.
+
+The process separation is deliberate. The smoke section performs real optimiser
+steps, and running it in its own process guarantees the production run cannot
+inherit its weights, optimizer state or LR schedule. A failed preflight exits
+non-zero and training is never started.
+
+You can also run it alone:
+
+```bash
+python scripts/server_preflight.py --data-root "$E3_DATA_ROOT" \
+                                   --output "$E3_RUN_ROOT/preflight"
+```
+
+It writes `preflight.json` and a `verdict.txt` containing `PASS` or `FAIL`.
+
+> The preflight validates the **same batch size training will use**
+> (`E3_BATCH_SIZE`, default 8). This matters: the task-balanced sampler emits
+> `floor(windows / batch_size)` batches per corpus, so a batch size larger than
+> a corpus's window count makes that corpus contribute **zero** training
+> batches. The preflight refuses to start rather than silently training on four
+> corpora.
+
 ---
 
 ## 5. Launch pretraining
@@ -136,9 +166,9 @@ Exit status is 0 only when nothing failed. Do not launch on a FAIL.
 bash scripts/run_e3_server.sh /srv/datasets/meta_canonical
 ```
 
-That is the whole command. It delegates to `scripts/e3_oneclick.py server`,
-which runs the repository's own `pretrain.py` through Hydra — there is no
-second training entry point to keep in sync.
+That is the whole command. It runs the preflight, then delegates to
+`scripts/e3_oneclick.py server`, which runs the repository's own `pretrain.py`
+through Hydra — there is no second training entry point to keep in sync.
 
 Environment overrides:
 
@@ -148,6 +178,9 @@ Environment overrides:
 | `E3_RUN_ROOT` | `/srv/experiments/e3` | where runs are written |
 | `E3_NATURE_CORPUS` | `<data-root>/nature_corpus.csv` | official corpus CSV |
 | `E3_PYTHON` | `python` | interpreter to use |
+| `E3_BATCH_SIZE` | `8` | batch size, used by the preflight **and** training |
+| `E3_PREFLIGHT_SMOKE_STEPS` | `5` | preflight optimiser steps (minimum 5, one per corpus) |
+| `E3_SKIP_PREFLIGHT` | `0` | set to 1 to bypass the gate (not recommended) |
 
 Extra arguments are forwarded, e.g. `--max-steps 2000` for a short pilot.
 

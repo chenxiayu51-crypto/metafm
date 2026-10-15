@@ -1,0 +1,18 @@
+# Canonical data profile for a local real-mini run on a single workstation GPU.
+#
+# The root and manifest are always injected from the CLI or environment
+# (E3_DATA_ROOT); nothing here hardcodes a machine path.
+name: local_real
+channels: 16
+root: null
+manifest_path: null
+# Same window geometry as server_full: the point of a real mini is to exercise
+# the production data contract, so window/stride must not drift.
+window_ms: 2000
+stride_ms: 1000
+# 8 GB of VRAM at 4000 samples x 16 channels x 128 d_model.
+batch_size: 4
+# Windows spawns workers expensively and HDF5 handles must not be inherited;
+# 0 keeps local runs predictable. Override on Linux if I/O bound.
+num_workers: 0
+sampler_seed: 0

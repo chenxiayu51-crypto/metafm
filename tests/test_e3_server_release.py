@@ -257,3 +257,19 @@ def test_prepare_data_requires_nature_corpus_and_never_invents_it(prepare_data, 
     assert "will not create it" in message
     assert not (root / "nature_corpus.csv").exists()
     assert not (root / "splits.csv").exists()
+
+
+def test_git_provenance_survives_a_working_directory_outside_the_repository(tmp_path, monkeypatch):
+    """Provenance must not depend on the caller's cwd.
+
+    `hydra.job.chdir` moves the process into the run directory, and a server run
+    directory lives outside the checkout by design. Resolving `git rev-parse`
+    from there used to return None, so `run_metadata.json` lost the commit SHA
+    exactly on the runs that matter most.
+    """
+    from semg_fm import reproducibility
+
+    monkeypatch.chdir(tmp_path)
+    commit = reproducibility._git_commit()
+    assert commit is not None, "git provenance degraded to null outside the repository"
+    assert len(commit) == 40 and all(c in "0123456789abcdef" for c in commit)

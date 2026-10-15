@@ -1,0 +1,26 @@
+defaults:
+  - e3_server
+
+# Local real-mini training profile.
+#
+# Inherits everything that defines the training semantics from e3_server /
+# a100_ddp -- bf16 mixed precision, gradient clipping, the task-balanced
+# samplers, E3RunDiagnostics, periodic `last.ckpt` -- and changes only what a
+# single-workstation GPU requires. In particular `devices: 1` replaces
+# `auto`, so a local run cannot silently spread across GPUs and stop being
+# comparable to a single-server-device run.
+devices: 1
+precision: bf16-mixed
+
+callbacks:
+  checkpoint:
+    _target_: lightning.pytorch.callbacks.ModelCheckpoint
+    dirpath: checkpoints
+    filename: "{epoch}-{step}"
+    monitor: val/loss
+    mode: min
+    save_top_k: 1
+    save_last: true
+    # A local mini run is short; checkpoint often so an interrupted
+    # verification does not have to restart from zero.
+    every_n_train_steps: 25

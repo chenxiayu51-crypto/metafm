@@ -413,7 +413,8 @@ def create_synthetic(root: Path) -> Path:
 
 
 def command(repo: Path, data_root: Path, manifest: Path, corpus: Path, run: Path,
-            mode: str, max_steps: int | None, resume: Path | None) -> list[str]:
+            mode: str, max_steps: int | None, resume: Path | None,
+            batch_size: int | None = None) -> list[str]:
     import torch
 
     if not (repo / "pretrain.py").is_file():
@@ -438,7 +439,7 @@ def command(repo: Path, data_root: Path, manifest: Path, corpus: Path, run: Path
         "+data.corpus_path": str(corpus.resolve()),
         "data.window_ms": 2000,
         "data.stride_ms": 1000,
-        "data.batch_size": 1 if local else 8,
+        "data.batch_size": batch_size if batch_size is not None else (1 if local else 8),
         "data.num_workers": 0 if local else 8,
         "model.d_model": 32 if (local and not cuda) else 128,
         "model.depth": 2 if (local and not cuda) else 6,
@@ -525,6 +526,8 @@ def main(argv=None):
     parser.add_argument("--output", default=os.environ.get("E3_RUN_ROOT", "outputs/e3_runs"))
     parser.add_argument("--repo", help="metafmodel repo root; default script's parent parent")
     parser.add_argument("--max-steps", type=int)
+    parser.add_argument("--batch-size", type=int,
+                        help="override the mode default (1 local / 8 server)")
     parser.add_argument("--resume")
     parser.add_argument("--audit-all", action="store_true")
     parser.add_argument("--probe-loader", action="store_true",
@@ -592,7 +595,8 @@ def main(argv=None):
     status_path = run / "e3_status.json"
     status_path.write_text(json.dumps(info, indent=2, ensure_ascii=False), encoding="utf-8")
     resume = Path(args.resume).resolve() if args.resume else None
-    cli = command(repo, root, manifest, corpus, run, args.mode, args.max_steps, resume)
+    cli = command(repo, root, manifest, corpus, run, args.mode, args.max_steps, resume,
+                  getattr(args, "batch_size", None))
     (run / "command.json").write_text(json.dumps(cli, ensure_ascii=False, indent=2), encoding="utf-8")
     print("[E3] Executing ORIGINAL metafmodel pretrain.py with official Nature intervals.", flush=True)
     log = run / "e3_train.log"
