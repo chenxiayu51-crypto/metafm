@@ -1,0 +1,38 @@
+# Normalise line endings at the repository boundary.
+#
+# This matters because the project is developed on Windows and deployed to a
+# Linux GPU server: a shell script committed with CRLF fails there with
+# `bash\r: bad interpreter: No such file or directory`, and the failure looks
+# like a missing file rather than a line-ending problem.
+
+* text=auto
+
+# Everything the Linux host executes or reads as text must be LF.
+*.sh    text eol=lf
+*.py    text eol=lf
+*.yaml  text eol=lf
+*.yml   text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.toml  text eol=lf
+*.cfg   text eol=lf
+*.ini   text eol=lf
+
+# The Windows local helper stays CRLF so it runs in PowerShell unchanged.
+*.ps1   text eol=crlf
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# Never touch binary content: no EOL conversion, no diffs.
+*.h5        binary
+*.hdf5      binary
+*.ckpt      binary
+*.pt        binary
+*.pth       binary
+*.npy       binary
+*.npz       binary
+*.pkl       binary
+*.zip       binary
+*.png       binary
+*.jpg       binary
+*.pdf       binary

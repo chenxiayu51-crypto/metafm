@@ -1,13 +1,177 @@
-.venv/
-__pycache__/
-.pytest_cache/
-*.egg-info/
-/outputs/
+# ============================================================================
+# metafmodel .gitignore
+#
+# This repository publishes SOURCE ONLY. Real corpora, model weights, training
+# outputs and machine-specific acceptance evidence must never be committed.
+#
+# NOTE: .gitignore does not untrack files that Git already follows. Files are
+# removed from the index with `git rm --cached` (working-tree copies survive).
+# See docs/SERVER_DEPLOY.md and docs/E3_ACCEPTANCE.md.
+# ============================================================================
+
+# ---------------------------------------------------------------------------
+# Real data: canonical HDF5, raw corpora, manifests and split definitions.
+# A canonical data root belongs at /srv/datasets/meta_canonical on the server,
+# never inside this checkout.
+# ---------------------------------------------------------------------------
+# Anchored to the repository root on purpose: an unanchored `data/` would also
+# swallow the SOURCE packages `semg_fm/data/` and `configs/data/`.
 /data/
-*.pt
-*.ckpt
+/datasets/
+/raw/
+/canonical/
+/emg_data_canonical/
 *.h5
 *.hdf5
-/build/
-/dist/
+*.he5
+*.mat
+*.parquet
+*.feather
+*.arrow
+*.zarr
+
+# Data-index artifacts. These are produced per deployment and must be
+# regenerated from the real corpus, not shipped.
+/splits.csv
+/manifest.csv
+/nature_corpus.csv
+
+# ---------------------------------------------------------------------------
+# Model weights, checkpoints and training outputs.
+# Outputs live outside the repository (E3_RUN_ROOT, default /srv/experiments/e3).
+# ---------------------------------------------------------------------------
+outputs/
+runs/
+lightning_logs/
+multirun/
+wandb/
+mlruns/
+tensorboard/
+events.out.tfevents.*
+*.ckpt
+*.pth
+*.pt
+*.onnx
+*.pb
+*.safetensors
+*.npy
+*.npz
+*.pkl
+*.joblib
+*.hickle
+
+# ---------------------------------------------------------------------------
+# Credentials. Never commit these. SSH keys, tokens, API keys, certificates.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+id_rsa*
+id_dsa*
+id_ecdsa*
+id_ed25519*
+*_credentials*
+*_secret*
+*_token*
+secrets.yaml
+secrets.yml
+credentials.json
+.netrc
+.aws/
+.ssh/
+
+# ---------------------------------------------------------------------------
+# Local machine-specific acceptance evidence.
+#
+# Every file under reports/ was generated on one developer workstation and
+# records that machine's absolute paths, the local user name and a census of
+# private dataset holdings (file counts by extension, checkpoint paths and
+# hashes). None of it is needed to reproduce a run, and publishing it would
+# disclose the local filesystem layout and the contents of the private corpus.
+# Evidence is regenerated per deployment into the run directory instead.
+# ---------------------------------------------------------------------------
+reports/
+
+# Superseded overlay-package delivery notes from earlier integration rounds.
+# They instruct the reader to unzip and overwrite files this repository already
+# owns and has since changed, and the ZIP ships stale duplicate copies of
+# intervals.py / window_dataset.py / datamodule.py / e3_oneclick.py.
+# Kept on disk for provenance; never published.
+/E3_README.md
+/E3_README_V3.md
+/E3_TEST_REPORT.json
+/E3_VERIFICATION.json
+/e3_loader_contract.zip
+
+# ---------------------------------------------------------------------------
+# Python bytecode, caches, packaging and virtual environments.
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+sdist/
+wheels/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+share/python-wheels/
+MANIFEST
+
+# ---------------------------------------------------------------------------
+# Virtual environments and local tooling state.
+# ---------------------------------------------------------------------------
+.venv/
+venv/
+ENV/
+env/
+.conda/
+.python-version
+.pytest_cache/
 .pytest_tmp/
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+
+# ---------------------------------------------------------------------------
+# Logs, profiler traces and crash dumps.
+# ---------------------------------------------------------------------------
+*.log
+logs/
+profiler/
+*.prof
+*.trace
+core
+core.*
+*.stackdump
+
+# ---------------------------------------------------------------------------
+# Editor and OS noise.
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini

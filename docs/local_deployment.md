@@ -1,11 +1,11 @@
 # Windows 本地运行与服务器迁移
 
-正式仓库 `C:/Users/18165/Documents/ChatGPT/metafmodel`。
+正式仓库 `<repo>`（克隆到任意位置均可；本文件不记录本机绝对路径）。
 已安装 editable metafmodel0.2.0，复用相邻MetaEMGFM/.venv，未复制CUDA环境。
 可设置 META_PYTHON 或创建主工程 .venv；优先使用项目内环境，其次相邻环境。
 
 ```powershell
-cd C:\Users\18165\Documents\ChatGPT\metafmodel
+cd <repo>
 .\scripts\run_local.ps1 verify
 .\scripts\run_local.ps1 test
 .\scripts\run_local.ps1 pretrain data=local trainer=local_gpu +pretrain=local_wrist trainer.max_steps=10
