@@ -6,10 +6,10 @@
 
 从零开始跑通整个仓库，依次执行四步；每步命令都可在任意目录（不限于 `D:\Fmodel`）中照抄：
 
-1. **获取原始数据**：按各语料官方发布说明下载 emg2pose、emg2qwerty、GNI 三个语料（许可均为 CC BY-NC-SA / CC BY-NC，禁止再分发）。语料清单与规模见 [`meta_semg_16ch_datasets.md`](meta_semg_16ch_datasets.md)。
-2. **转换**：安装依赖后运行 [`semg_h5/`](semg_h5) 下 5 个独立转换器，产出统一的 canonical H5 与 `manifest.csv`（见[转换各个语料](#转换各个语料)与 [`H5_DATA_CONTRACT.md`](H5_DATA_CONTRACT.md)）。
+1. **获取原始数据**：按各语料官方发布说明下载 emg2pose、emg2qwerty、GNI 三个语料（许可均为 CC BY-NC-SA / CC BY-NC，禁止再分发）。语料清单与规模见 [`meta_semg_16ch_datasets.md`](../meta_semg_16ch_datasets.md)。
+2. **转换**：安装依赖后运行 [`semg_h5/`](../semg_h5) 下 5 个独立转换器，产出统一的 canonical H5 与 `manifest.csv`（见[转换各个语料](#转换各个语料)与 [`H5_DATA_CONTRACT.md`](../H5_DATA_CONTRACT.md)）。
 3. **生成划分**：用 `make_splits.py` 为没有官方划分的记录分配确定性 train/val/test 划分，官方划分原样保留。
-4. **训练与评测**：`pretrain.py` 自监督预训练 → `finetune.py` 逐任务微调 → `evaluate.py` 留存集评测 → `run_baseline.py` 对比基线。先跑[五分钟 CPU 冒烟](#五分钟-cpu-冒烟)验证环境，正式训练上 A100 见 [`SERVER_A100.md`](SERVER_A100.md) 与 [`EXPERIMENT_PROTOCOL.md`](EXPERIMENT_PROTOCOL.md)。
+4. **训练与评测**：`pretrain.py` 自监督预训练 → `finetune.py` 逐任务微调 → `evaluate.py` 留存集评测 → `run_baseline.py` 对比基线。先跑[五分钟 CPU 冒烟](#五分钟-cpu-冒烟)验证环境，正式训练上 A100 见 [`SERVER_A100.md`](../SERVER_A100.md) 与 [`EXPERIMENT_PROTOCOL.md`](../EXPERIMENT_PROTOCOL.md)。
 
 ## 安装
 
