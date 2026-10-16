@@ -33,9 +33,13 @@ from __future__ import annotations
 import argparse
 import csv
 import os
+import importlib.util
 import subprocess
 import sys
+import warnings
 from pathlib import Path
+
+import h5py
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -75,9 +79,116 @@ CORPUS_HELP = """\
 """
 
 
-def raw_root_for(dataset_id: str, raw_root: Path) -> Path:
-    override = os.environ.get(ENVIRONMENT_VARIABLES[dataset_id])
-    return Path(override).expanduser() if override else raw_root / dataset_id
+def resolve_raw_roots(args) -> dict[str, Path]:
+    """Locate each corpus: explicit flag, then env var, then <raw-root>/<corpus>.
+
+    The five public releases are often unpacked in unrelated directories (some
+    on a different mount entirely), so a single parent root is a convenience,
+    not a requirement.
+    """
+    explicit = {
+        "emg2pose": args.raw_emg2pose,
+        "emg2qwerty": args.raw_emg2qwerty,
+        "gni_discrete_gestures": args.raw_gni_discrete_gestures,
+        "gni_handwriting": args.raw_gni_handwriting,
+        "gni_wrist": args.raw_gni_wrist,
+    }
+    base = Path(args.raw_root).expanduser().resolve() if args.raw_root else None
+    resolved: dict[str, Path] = {}
+    unresolved: list[str] = []
+    for name in CONVERTERS:
+        value = explicit[name] or os.environ.get(ENVIRONMENT_VARIABLES[name])
+        if value:
+            resolved[name] = Path(value).expanduser().resolve()
+        elif base is not None:
+            resolved[name] = base / name
+        else:
+            unresolved.append(name)
+    if unresolved:
+        raise SystemExit(
+            "[E3] no location given for: " + ", ".join(unresolved) + "\n"
+            "     Pass --raw-<corpus> for each one (or set the matching environment\n"
+            "     variable, or give --raw-root containing <corpus>/ subdirectories)."
+        )
+    return resolved
+
+
+def _converter_module(dataset_id: str):
+    spec = importlib.util.spec_from_file_location(
+        f"convert_{dataset_id}", REPO / "semg_h5" / CONVERTERS[dataset_id])
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _sample_files(root: Path, limit: int = 3) -> list[Path]:
+    found = [p for p in sorted(root.rglob("*"))
+             if p.suffix.lower() in (".h5", ".hdf5") and p.is_file()]
+    return found[:limit]
+
+
+def probe_corpus(dataset_id: str, root: Path, samples: int = 2) -> dict:
+    """Try the converter's OWN reader on real files. Read-only; nothing is written.
+
+    Running the actual reader is the only honest pre-check: a structural guess
+    can pass while the converter still rejects the file, and a wrong guess that
+    survives costs hours of conversion before it fails.
+    """
+    report: dict = {"root": str(root), "status": "UNKNOWN"}
+    if not root.is_dir():
+        report.update(status="FAIL", error=f"not a directory: {root}")
+        return report
+    files = [p for p in sorted(root.rglob("*"))
+             if p.suffix.lower() in (".h5", ".hdf5") and p.is_file()]
+    report["hdf5_files"] = len(files)
+    if not files:
+        report.update(status="FAIL", error="no .h5/.hdf5 files found below this directory")
+        return report
+
+    module = _converter_module(dataset_id)
+    sample = files[0]
+    report["sample"] = str(sample)
+    try:
+        with h5py.File(sample, "r") as handle:
+            report["top_level"] = sorted(handle.keys())
+    except Exception as exc:  # noqa: BLE001 - reported, not raised
+        report.update(status="FAIL", error=f"cannot open as HDF5: {exc}")
+        return report
+
+    reader = getattr(module, "_read_emg2pose", None) or getattr(module, "read_emg2qwerty", None) \
+        or getattr(module, "_read_gni", None)
+    if reader is None:
+        report.update(status="FAIL", error="converter exposes no reader to test with")
+        return report
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            try:
+                parsed = reader(sample, "unknown")
+            except TypeError:
+                parsed = reader(sample)
+    except Exception as exc:  # noqa: BLE001 - the message is the whole point
+        report.update(status="FAIL", error=f"{type(exc).__name__}: {exc}")
+        return report
+
+    records = parsed if isinstance(parsed, list) else [parsed]
+
+    def field(record, name):
+        """The converters return both dataclasses and plain dicts."""
+        value = record.get(name) if isinstance(record, dict) else getattr(record, name, None)
+        return value
+
+    report["records_per_file"] = len(records)
+    report["status"] = "PASS"
+    report["parsed"] = []
+    for record in records[:4]:
+        emg = field(record, "emg")
+        report["parsed"].append({
+            "task_id": field(record, "task_id"), "subject_id": field(record, "subject_id"),
+            "side": field(record, "side"), "pair_id": field(record, "pair_id"),
+            "samples": int(len(emg)) if emg is not None else 0,
+        })
+    return report
 
 
 def run_converter(dataset_id: str, input_root: Path, output_root: Path, overwrite: bool) -> None:
@@ -171,13 +282,50 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--raw-root", default=os.environ.get("E3_RAW_ROOT"),
                         help="directory holding one subdirectory per corpus")
+    parser.add_argument("--raw-emg2pose", default=None, help="raw emg2pose release (overrides --raw-root)")
+    parser.add_argument("--raw-emg2qwerty", default=None, help="raw emg2qwerty release")
+    parser.add_argument("--raw-gni-discrete-gestures", default=None, help="raw GNI discrete gestures release")
+    parser.add_argument("--raw-gni-handwriting", default=None, help="raw GNI handwriting release")
+    parser.add_argument("--raw-gni-wrist", default=None, help="raw GNI wrist release")
     parser.add_argument("--canonical-root", default=os.environ.get("E3_DATA_ROOT"),
-                        help="destination canonical data root")
+                        help="destination canonical data root (or set E3_DATA_ROOT)")
     parser.add_argument("--seed", type=int, default=0, help="seed for non-official group splits")
     parser.add_argument("--overwrite", action="store_true", help="replace existing canonical records")
     parser.add_argument("--skip-conversion", action="store_true",
                         help="canonical HDF5 already exists; only (re)build splits.csv")
+    parser.add_argument("--inspect", action="store_true",
+                        help="read-only: test-read a sample from each raw corpus with the "
+                             "converter's own reader, then exit without converting anything")
     args = parser.parse_args(argv)
+
+    # --inspect never writes, so it does not need a destination.
+    if args.inspect:
+        resolved = resolve_raw_roots(args)
+        print("[E3] inspecting raw corpora (read-only; nothing is written)\n")
+        failures = 0
+        for dataset_id in CONVERTERS:
+            report = probe_corpus(dataset_id, resolved[dataset_id])
+            mark = "PASS" if report["status"] == "PASS" else "FAIL"
+            failures += report["status"] != "PASS"
+            print(f"  [{mark}] {dataset_id}")
+            print(f"         path    : {report['root']}")
+            print(f"         hdf5    : {report.get('hdf5_files', 0)} file(s) found")
+            if report.get("top_level"):
+                print(f"         groups  : {', '.join(report['top_level'])}")
+            if report["status"] == "PASS":
+                print(f"         sample  : {report['sample']}")
+                for record in report.get("parsed", [])[:2]:
+                    print(f"         parsed  : task={record['task_id']} subject={record['subject_id']} "
+                          f"side={record['side']} samples={record['samples']}")
+            else:
+                print(f"         error   : {report.get('error')}")
+            print()
+        if failures:
+            print(f"[E3] {failures} corpus/corpora could not be read by the converter.")
+            print("     Fix the layout (see docs/DATA_LAYOUT.md section 4) before converting.")
+            return 1
+        print("[E3] all five corpora read cleanly. Convert with the same flags, minus --inspect.")
+        return 0
 
     if not args.canonical_root:
         raise SystemExit("[E3] --canonical-root (or E3_DATA_ROOT) is required")
@@ -185,23 +333,20 @@ def main(argv=None) -> int:
     canonical.mkdir(parents=True, exist_ok=True)
 
     if not args.skip_conversion:
-        if not args.raw_root:
-            raise SystemExit("[E3] --raw-root (or E3_RAW_ROOT) is required unless --skip-conversion is used")
-        raw_root = Path(args.raw_root).expanduser().resolve()
-        if not raw_root.is_dir():
-            raise SystemExit(f"[E3] raw root does not exist: {raw_root}")
-        if canonical == raw_root or raw_root in canonical.parents:
-            raise SystemExit(
-                f"[E3] canonical root {canonical} must not sit inside the raw root {raw_root};\n"
-                "     the converters refuse that layout too."
-            )
-        resolved = {name: raw_root_for(name, raw_root) for name in CONVERTERS}
+        resolved = resolve_raw_roots(args)
         missing = {name: path for name, path in resolved.items() if not path.is_dir()}
         if missing:
-            lines = [f"[E3] these raw corpus directories were not found:"]
-            lines += [f"       {name:<24} {path}   (set {ENVIRONMENT_VARIABLES[name]})" for name, path in missing.items()]
+            lines = ["[E3] these raw corpus directories were not found:"]
+            lines += [f"       {name:<24} {path}" for name, path in missing.items()]
             lines.append("     Every corpus must be present: E3 pretrains on all five jointly.")
+            lines.append("     Run with --inspect first to check what is actually there.")
             raise SystemExit("\n".join(lines))
+        for name, path in resolved.items():
+            if canonical == path or path in canonical.parents:
+                raise SystemExit(
+                    f"[E3] canonical root {canonical} sits inside the raw corpus {path};\n"
+                    "     the converters refuse that layout too."
+                )
         for name, path in resolved.items():
             run_converter(name, path, canonical, args.overwrite)
 
