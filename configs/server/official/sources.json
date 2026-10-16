@@ -1,0 +1,14 @@
+[
+  {
+    "file": "emg2qwerty_generic.yaml",
+    "url": "https://raw.githubusercontent.com/facebookresearch/emg2qwerty/3200d91eeb952cbed1f278e47d0cc56928334fd1/config/user/generic.yaml",
+    "commit": "3200d91eeb952cbed1f278e47d0cc56928334fd1",
+    "sha256": "64dc387b33e9901857192db03d0281d0da84fbc486ff392015a1732669090f57"
+  },
+  {
+    "file": "EMG2QWERTY_LICENSE",
+    "url": "https://raw.githubusercontent.com/facebookresearch/emg2qwerty/3200d91eeb952cbed1f278e47d0cc56928334fd1/LICENSE",
+    "commit": "3200d91eeb952cbed1f278e47d0cc56928334fd1",
+    "sha256": "1349a4b6148492b44f629e64eed676612e234fe9a839e4f3b277c1482c8849f1"
+  }
+]

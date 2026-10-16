@@ -1,0 +1,16 @@
+{
+  "raw_roots": {
+    "gni_handwriting": "/media/SSD4/personal/sjwu/foundation_model/dataset/meta_handwriting",
+    "gni_wrist": "/media/SSD4/personal/sjwu/foundation_model/dataset/meta_wrist",
+    "gni_discrete_gestures": "/media/SSD4/personal/sjwu/foundation_model/dataset/meta_discrete_gestures",
+    "emg2pose": "/media/SSD4/personal/sjwu/foundation_model/dataset/emg2pose_data",
+    "emg2qwerty": "/home/fangyun/metafmmodel/dataset/emg2qwerty"
+  },
+  "canonical_root": "/media/SSD4/personal/sjwu/foundation_model/dataset/meta_canonical_v1",
+  "run_root": "/media/SSD4/personal/sjwu/foundation_model/experiments/metafmodel",
+  "nature_corpus_csvs": [],
+  "official_split_csvs": {},
+  "qwerty_generic_yaml": "configs/server/official/emg2qwerty_generic.yaml",
+  "exclude_qwerty_outside_generic": true,
+  "seed": 42
+}

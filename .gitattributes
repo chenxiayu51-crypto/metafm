@@ -17,6 +17,10 @@
 *.toml  text eol=lf
 *.cfg   text eol=lf
 *.ini   text eol=lf
+*.json  text eol=lf
+
+# Preserve the exact bytes hashed in configs/server/official/sources.json.
+configs/server/official/* -text
 
 # The Windows local helper stays CRLF so it runs in PowerShell unchanged.
 *.ps1   text eol=crlf

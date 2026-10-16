@@ -1,5 +1,8 @@
 # Meta sEMG Foundation Model — 五语料 E3 预训练工程
 
+**2026-10-16 服务器五路径部署包：先看 [上传运行说明](START_HERE_服务器.md)。**
+该入口自动读取官方下载的 corpus CSV 与随包官方 QWERTY generic YAML，支持安全续跑转换后接原生训练。
+
 `metafmodel` 是唯一正式主仓库，保留 Ring Criss-Cross + EMA Teacher–Student +
 Hydra/Lightning 主干。E3 五语料联合预训练是当前唯一正式启动目标。
 

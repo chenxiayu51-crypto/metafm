@@ -221,12 +221,13 @@ def write_rows(path: Path, rows: list[dict[str, str]], columns: list[str]) -> No
         writer.writerows(rows)
 
 
-def build_splits(canonical: Path, seed: int) -> Path:
+def build_splits(canonical: Path, seed: int, *, manifest_path: Path | None = None,
+                 output_path: Path | None = None) -> Path:
     """Attach a `split` column to manifest.csv, preserving official splits."""
     sys.path.insert(0, str(REPO))
     from semg_fm.data.make_splits import main as make_splits_main
 
-    manifest = canonical / "manifest.csv"
+    manifest = manifest_path or canonical / "manifest.csv"
     if not manifest.is_file():
         raise SystemExit(f"[E3] no canonical manifest produced at {manifest}")
     rows, columns = read_rows(manifest)
@@ -272,7 +273,7 @@ def build_splits(canonical: Path, seed: int) -> Path:
     out_columns = assigned_columns if "split" in assigned_columns else [*columns, "split"]
     combined = [{column: row.get(column, "") for column in out_columns} for row in [*assigned_rows, *nature_rows]]
 
-    splits = canonical / "splits.csv"
+    splits = output_path or canonical / "splits.csv"
     write_rows(splits, combined, out_columns)
     print(f"[E3] wrote {splits} ({len(combined)} records: {len(assigned_rows)} split-assigned, {len(nature_rows)} corpus-driven)")
     return splits
